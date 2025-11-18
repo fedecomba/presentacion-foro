@@ -55,8 +55,8 @@ const Slide2: React.FC = () => {
             No solo administramos más cosas, sino cosas más complejas y heterogéneas.
           </p>
           <ul className="space-y-3">
-            <ListItem icon={<ComplexityIcon />}>Más sedes (PB/Piso 1, SDE, Paraná, Villa María y posible nueva sede Bs As).</ListItem>
-            <ListItem icon={<ComplexityIcon />}>Flota más heterogénea, con más autos, más talleres y más gestiones por siniestros, seguros y mantenimiento.</ListItem>
+            <ListItem icon={<ComplexityIcon />}>Más sedes (SDE, Paraná, Villa María y posible nueva sede Bs As).</ListItem>
+            <ListItem icon={<ComplexityIcon />}>Flota más heterogénea, con más autos, más proveedores y más gestiones por siniestros, seguros y mantenimiento.</ListItem>
             <ListItem icon={<ComplexityIcon />}>Beneficios más amplios y con mayor necesidad de seguimiento.</ListItem>
           </ul>
         </div>

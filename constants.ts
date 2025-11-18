@@ -118,7 +118,7 @@ export const dashboardData: YearData[] = [
       ],
     },
     collaborators: 391,
-    budget: { value: 'USD 1,8 M*', color: 'text-green-500' },
+    budget: { value: 'USD 1,8 M', color: 'text-green-500' },
     ratio: {
       barValue: 5,
       ratio: '1,3%',

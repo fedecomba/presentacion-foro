@@ -1,7 +1,7 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { dashboardData } from '../constants';
 import RatioChart from './RatioChart';
+import BudgetBreakdownChart from './BudgetBreakdownChart';
 
 const GreenTag: React.FC<{ text: string }> = ({ text }) => (
   <div className="relative inline-block bg-green-500 text-white px-2 py-0.5 text-xs rounded-sm shadow">
@@ -13,9 +13,10 @@ const GreenTag: React.FC<{ text: string }> = ({ text }) => (
 const Dashboard: React.FC = () => {
   const maxOfficeSqm = Math.max(...dashboardData.map(d => d.office.sqm));
   const maxFleet = Math.max(...dashboardData.map(d => d.fleet.total));
+  const [hoveredBudgetYear, setHoveredBudgetYear] = useState<string | null>(null);
 
   return (
-    <div className="w-full max-w-7xl mx-auto bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200">
+    <div className="w-full max-w-7xl mx-auto bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200 relative">
       {/* Years Header */}
       <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 mb-4">
         <div className="hidden md:block"></div>
@@ -77,13 +78,31 @@ const Dashboard: React.FC = () => {
         </div>
         
         {/* PRESUPUESTO */}
-        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16">
+        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16 relative">
           <div className="font-bold text-gray-700 text-sm">PRESUPUESTO</div>
           <div className="col-span-6 grid grid-cols-6 gap-4">
             {dashboardData.map(({ year, budget }) => (
-              <div key={year} className="text-center flex flex-col items-center justify-center">
+              <div 
+                key={year} 
+                className="text-center flex flex-col items-center justify-center relative"
+                onMouseEnter={() => year === '24/25' && setHoveredBudgetYear(year)}
+                onMouseLeave={() => setHoveredBudgetYear(null)}
+              >
                  {budget.tag && <GreenTag text={budget.tag} />}
-                <div className={`font-bold text-sm sm:text-base ${budget.color} mt-1.5`}>{budget.value}</div>
+                <div 
+                  className={`font-bold text-sm sm:text-base ${budget.color} mt-1.5 ${year === '24/25' ? 'cursor-pointer underline decoration-dotted decoration-gray-400 underline-offset-4 hover:text-blue-800' : ''}`}
+                >
+                  {budget.value}
+                </div>
+                
+                {/* Popover Chart for 24/25 */}
+                {year === '24/25' && hoveredBudgetYear === '24/25' && (
+                  <div className="absolute bottom-full mb-4 left-1/2 transform -translate-x-[85%] z-50 animate-fade-in">
+                     {/* Triangular arrow pointing down */}
+                    <div className="absolute -bottom-2 left-[85%] transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-r border-b border-gray-300 z-50"></div>
+                    <BudgetBreakdownChart />
+                  </div>
+                )}
               </div>
             ))}
           </div>
