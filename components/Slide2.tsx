@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const GrowthIcon = () => (
@@ -33,31 +34,31 @@ const Slide2: React.FC = () => {
         
         {/* Column 1: Growth */}
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 flex flex-col">
+          <h2 className="text-2xl font-bold text-indigo-700 text-center mb-4">1. Crecimiento vs. Equipo</h2>
+          <p className="text-gray-600 text-center mb-6 px-4 leading-relaxed">
+            Gestionamos una operación cada vez más grande, con un equipo prácticamente del mismo tamaño.
+          </p>
           <ul className="space-y-3">
             <ListItem icon={<GrowthIcon />}>M² de Oficina: <strong>+181%</strong> (1.160 → 3.265)</ListItem>
             <ListItem icon={<GrowthIcon />}>Flota de Autos: <strong>+128%</strong> (21 → 48)</ListItem>
             <ListItem icon={<GrowthIcon />}>Presupuesto Admin: <strong>+365%</strong> (USD 430K → 2M)</ListItem>
-            <ListItem icon={<TeamIcon />}>Dotación Empresa: <strong>+40%</strong> (279 → 391)</ListItem>
+            <ListItem icon={<TeamIcon />}>Colaboradores: <strong>+40%</strong> (279 → 391)</ListItem>
             <ListItem icon={<TeamIcon />}>Equipo OM: <strong>3 → 5 personas</strong></ListItem>
             <ListItem icon={<GrowthIcon />}>La relación OM/Nómina se mantuvo entre <strong>1,1% y 1,3%</strong>, sin desbordarse.</ListItem>
           </ul>
-          <div className="flex-grow"></div>
-          <div className="mt-8 bg-indigo-50 border border-indigo-200 rounded-lg p-4 text-center">
-            <p className="text-indigo-800 font-bold italic">“No crecimos en una sola dimensión: crecimos en todas al mismo tiempo. La operación se volvió mucho más grande y compleja sin que el equipo creciera en la misma proporción.”</p>
-          </div>
         </div>
 
         {/* Column 2: Complexity */}
         <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 flex flex-col">
+          <h2 className="text-2xl font-bold text-indigo-700 text-center mb-4">2. Más Complejidad, No Solo Volumen</h2>
+          <p className="text-gray-600 text-center mb-6 px-4 leading-relaxed">
+            No solo administramos más cosas, sino cosas más complejas y heterogéneas.
+          </p>
           <ul className="space-y-3">
             <ListItem icon={<ComplexityIcon />}>Más sedes (PB/Piso 1, SDE, Paraná, Villa María y posible nueva sede Bs As).</ListItem>
             <ListItem icon={<ComplexityIcon />}>Flota más heterogénea, con más autos, más talleres y más gestiones por siniestros, seguros y mantenimiento.</ListItem>
             <ListItem icon={<ComplexityIcon />}>Beneficios más amplios y con mayor necesidad de seguimiento.</ListItem>
           </ul>
-          <div className="flex-grow"></div>
-          <div className="mt-8 bg-indigo-50 border border-indigo-200 rounded-lg p-4 text-center">
-            <p className="text-indigo-800 font-bold italic">“No solo administramos más cosas, sino cosas más complejas: Cada año agregamos nuevos servicios, nuevas sedes y más proveedores, y seguimos operando con la misma estructura.”</p>
-          </div>
         </div>
 
       </div>
