@@ -1,0 +1,5 @@
+{
+  "name": "Corporate KPI Dashboard",
+  "description": "A web application that visualizes key performance indicators (KPIs) across different fiscal years, replicating a corporate presentation slide. It includes metrics like office space, car fleet, employee count, budget, and operational ratios.",
+  "requestFramePermissions": []
+}
