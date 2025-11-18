@@ -1,4 +1,3 @@
-
 import { YearData } from './types';
 
 export const dashboardData: YearData[] = [
@@ -13,7 +12,7 @@ export const dashboardData: YearData[] = [
       ],
     },
     collaborators: 279,
-    budget: { value: 'USD 430 K', tag: 'PANDEMIA', color: 'text-blue-600' },
+    budget: { value: 'USD 430 K', color: 'text-gray-700' },
     ratio: {
       barValue: 3,
       ratio: '1,1%',
@@ -34,7 +33,7 @@ export const dashboardData: YearData[] = [
       ],
     },
     collaborators: 320,
-    budget: { value: 'USD 688 K', tag: 'MEJORA BENEFICIOS', color: 'text-blue-600' },
+    budget: { value: 'USD 688 K', color: 'text-gray-700' },
     ratio: {
       barValue: 3,
       ratio: '0,9%',
@@ -118,7 +117,7 @@ export const dashboardData: YearData[] = [
       ],
     },
     collaborators: 391,
-    budget: { value: 'USD 1,8 M', color: 'text-green-500' },
+    budget: { value: 'USD 1,8 M', color: 'text-gray-700' },
     ratio: {
       barValue: 5,
       ratio: '1,3%',
