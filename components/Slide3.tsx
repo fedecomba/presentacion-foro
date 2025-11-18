@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const CostIcon = () => (
@@ -32,7 +33,7 @@ const SectionCard: React.FC<{ title: string; icon: React.ReactNode; colorClass: 
   </div>
 );
 
-const Objective: React.FC<{ title: string; items: string[] }> = ({ title, items }) => (
+const Objective: React.FC<{ title: string; items: React.ReactNode[] }> = ({ title, items }) => (
   <div className="flex flex-col">
     <h3 className="text-xs font-bold text-gray-700 uppercase tracking-wide mb-3 border-l-4 border-gray-300 pl-3 py-0.5 bg-gray-50 rounded-r line-clamp-2 leading-relaxed">
       {title}
@@ -51,7 +52,7 @@ const Objective: React.FC<{ title: string; items: string[] }> = ({ title, items 
 const Slide3: React.FC = () => {
   return (
     <div className="w-full max-w-7xl mx-auto bg-gray-50 p-4 sm:p-8 rounded-xl shadow-lg border border-gray-200 flex flex-col">
-      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Focos 2026</h1>
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Focos OM y Compras 2026</h1>
       
       <div className="max-w-5xl mx-auto mb-8 text-center">
         <div className="bg-white px-8 py-5 rounded-2xl shadow-sm border border-indigo-100 relative overflow-hidden inline-block text-left sm:text-center">
@@ -67,20 +68,20 @@ const Slide3: React.FC = () => {
         {/* A) Costos y Eficiencia */}
         <SectionCard title="Costos y Eficiencia" icon={<CostIcon />} colorClass="bg-green-50">
           <Objective 
-            title="Digitalizar compras y proveedores" 
+            title="Compras digitales con Ariba SAP" 
             items={[
-              "Implementar el modulo ARIBA en SAP para centralizar todo el circuito de compras y proveedores.",
-              "Asegurar trazabilidad y transparencia en cada etapa: solicitud, cotización, aprobación y pago.",
-              "Ahorro promedio: 8%–15% del valor del contrato."
+              "Trazabilidad y transparencia end-to-end.",
+              "Subastas y comparativas automáticas.",
+              <>Ahorros estimados: <strong>8%–15%</strong>.</>
             ]} 
           />
           <div className="border-t border-dashed border-gray-200"></div>
           <Objective 
-            title="Unificar servicios con enfoque regional" 
+            title="Servicios unificados a nivel regional" 
             items={[
-              "Estandarizar contratos, SLAs y alcances de servicio en SDE, Parana, Villa Maria.",
-              "Reducir costos en un 10% mediante sinergias y compras consolidadas.",
-              "Lograr un único proveedor regional en al menos 2 rubros clave."
+              "Contratos y SLAs estandarizados.",
+              <>Lograr un único proveedor regional en <strong>2 rubros clave</strong>.</>,
+              <>Reducción de costos: <strong>10%</strong>.</>
             ]} 
           />
         </SectionCard>
@@ -90,17 +91,16 @@ const Slide3: React.FC = () => {
           <Objective 
             title="Sistema de beneficios flexibles" 
             items={[
-              "Alcanzar una tasa de adopción superior al 80%.",
-              "Medir satisfacción de usuarios y obtener +4/5 en la encuesta anual."
+              <>Alcanzar una tasa de adopción superior al <strong>80%</strong>.</>,
+              <>Medir satisfacción de usuarios y obtener <strong>+4/5</strong> en la encuesta anual.</>
             ]} 
           />
           <div className="border-t border-dashed border-gray-200"></div>
           <Objective 
             title="Homogeneizar modelo de servicio" 
             items={[
-              "Definir estándares medibles de atención.",
               "Implementar el modelo en las tres sedes principales.",
-              "Reducir reclamos y tickets operativos en 20%."
+              <>Reducir reclamos y tickets operativos en <strong>20%</strong>.</>
             ]} 
           />
         </SectionCard>
@@ -108,18 +108,18 @@ const Slide3: React.FC = () => {
         {/* C) Datos e Inteligencia Artificial */}
         <SectionCard title="Datos e IA" icon={<DataIcon />} colorClass="bg-blue-50">
           <Objective 
-            title="Aplicar IA a flota corporativa" 
+            title="Aplicación en Flota Corporativa" 
             items={[
-              "Desarrollar un modelo predictivo que anticipe mantenimientos y fallas con al menos 80% de precisió.",
-              "Implementar un dashboard mensual con: uso por vehículo, kilometraje, costos, siniestros, mantenimientos y alertas predictivas."
+              <>Predictivo: Modelo que anticipe fallas y mantenimientos con <strong>+80% de precisión</strong>.</>,
+              "Gestión: Dashboard mensual con uso, km, costos, siniestros, mantenimientos y alertas."
             ]} 
           />
           <div className="border-t border-dashed border-gray-200"></div>
           <Objective 
-            title="Automatizar tareas operativas" 
+            title="Automatización Operativa" 
             items={[
-              "Automatizar al menos 5 procesos (cadetería, desayunos, alertas, reservas, reportes).",
-              "Liberar al equipo al menos 50 horas mensuales de tareas operativas."
+              <>Procesos: Automatizar <strong>5 flujos clave</strong> (cadetería, desayunos, alertas, reservas, reportes).</>,
+              <>Impacto: Liberar <strong>+50 horas mensuales</strong> del equipo.</>
             ]} 
           />
         </SectionCard>
