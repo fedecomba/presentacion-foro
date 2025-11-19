@@ -7,8 +7,8 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 21,
       breakdown: [
+        { label: 'AMAUTA ARG', value: 11, color: 'bg-purple-600' },
         { label: 'FYO', value: 10, color: 'bg-cyan-400' },
-        { label: 'AMAUTA ARG', value: 11, color: 'bg-purple-400' },
       ],
     },
     collaborators: 279,
@@ -26,10 +26,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 32,
       breakdown: [
-        { label: 'FYO', value: 12, color: 'bg-cyan-400' },
-        { label: 'AMAUTA ARG', value: 15, color: 'bg-purple-400' },
+        { label: 'KINTOO', value: 2, color: 'bg-teal-700' },
         { label: 'AMAUTA UY', value: 3, color: 'bg-lime-400' },
-        { label: 'KINTOO', value: 2, color: 'bg-teal-500' },
+        { label: 'AMAUTA ARG', value: 15, color: 'bg-purple-600' },
+        { label: 'FYO', value: 12, color: 'bg-cyan-400' },
       ],
     },
     collaborators: 320,
@@ -47,10 +47,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 46,
       breakdown: [
-        { label: 'FYO', value: 15, color: 'bg-cyan-400' },
-        { label: 'AMAUTA ARG', value: 24, color: 'bg-purple-400' },
+        { label: 'KINTOO', value: 3, color: 'bg-teal-700' },
         { label: 'AMAUTA UY', value: 4, color: 'bg-lime-400' },
-        { label: 'KINTOO', value: 3, color: 'bg-teal-500' },
+        { label: 'AMAUTA ARG', value: 24, color: 'bg-purple-600' },
+        { label: 'FYO', value: 15, color: 'bg-cyan-400' },
       ],
     },
     collaborators: 353,
@@ -68,10 +68,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 49,
       breakdown: [
-        { label: 'FYO', value: 16, color: 'bg-cyan-400' },
-        { label: 'AMAUTA ARG', value: 25, color: 'bg-purple-400' },
+        { label: 'KINTOO', value: 3, color: 'bg-teal-700' },
         { label: 'AMAUTA UY', value: 5, color: 'bg-lime-400' },
-        { label: 'KINTOO', value: 3, color: 'bg-teal-500' },
+        { label: 'AMAUTA ARG', value: 25, color: 'bg-purple-600' },
+        { label: 'FYO', value: 16, color: 'bg-cyan-400' },
       ],
     },
     collaborators: 383,
@@ -89,10 +89,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 48,
       breakdown: [
-        { label: 'FYO', value: 16, color: 'bg-cyan-400' },
-        { label: 'AMAUTA ARG', value: 24, color: 'bg-purple-400' },
+        { label: 'KINTOO', value: 3, color: 'bg-teal-700' },
         { label: 'AMAUTA UY', value: 5, color: 'bg-lime-400' },
-        { label: 'KINTOO', value: 3, color: 'bg-teal-500' },
+        { label: 'AMAUTA ARG', value: 24, color: 'bg-purple-600' },
+        { label: 'FYO', value: 16, color: 'bg-cyan-400' },
       ],
     },
     collaborators: 391,
@@ -110,10 +110,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 48,
       breakdown: [
-        { label: 'FYO', value: 20, color: 'bg-cyan-400' },
-        { label: 'AMAUTA ARG', value: 22, color: 'bg-purple-400' },
+        { label: 'KINTOO', value: 2, color: 'bg-teal-700' },
         { label: 'AMAUTA UY', value: 4, color: 'bg-lime-400' },
-        { label: 'KINTOO', value: 2, color: 'bg-teal-500' },
+        { label: 'AMAUTA ARG', value: 22, color: 'bg-purple-600' },
+        { label: 'FYO', value: 20, color: 'bg-cyan-400' },
       ],
     },
     collaborators: 391,

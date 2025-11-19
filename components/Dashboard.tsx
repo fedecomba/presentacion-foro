@@ -10,13 +10,20 @@ const GreenTag: React.FC<{ text: string }> = ({ text }) => (
   </div>
 );
 
+const FleetLegendItem: React.FC<{ color: string; label: string }> = ({ color, label }) => (
+  <div className="flex items-center gap-2 mb-0.5">
+    <div className={`w-3 h-3 ${color}`}></div>
+    <span className="text-[10px] leading-none font-semibold text-gray-600 uppercase">{label}</span>
+  </div>
+);
+
 const Dashboard: React.FC = () => {
   const maxOfficeSqm = Math.max(...dashboardData.map(d => d.office.sqm));
   const maxFleet = Math.max(...dashboardData.map(d => d.fleet.total));
   const [hoveredBudgetYear, setHoveredBudgetYear] = useState<string | null>(null);
 
   return (
-    <div className="w-full max-w-7xl mx-auto bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200 relative">
+    <div className="w-full max-w-7xl mx-auto bg-gray-50 p-4 sm:p-6 md:pr-48 rounded-xl shadow-lg border border-gray-200 relative">
       {/* Years Header */}
       <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 mb-4">
         <div className="hidden md:block"></div>
@@ -37,8 +44,9 @@ const Dashboard: React.FC = () => {
               <div key={year} className="flex flex-col items-center justify-end h-16">
                  {office.tag && <GreenTag text={office.tag} />}
                 <div className="font-bold text-gray-800 text-sm mt-1">{office.sqm}</div>
-                <div className="w-full bg-gray-200 rounded-full h-2.5 mt-1">
-                  <div className="bg-blue-900 h-2.5 rounded-full" style={{ width: `${(office.sqm / maxOfficeSqm) * 100}%` }}></div>
+                {/* Reverted to original rectangular style */}
+                <div className="w-full bg-gray-200 rounded h-2 mt-2">
+                  <div className="bg-blue-900 h-2 rounded" style={{ width: `${(office.sqm / maxOfficeSqm) * 100}%` }}></div>
                 </div>
               </div>
             ))}
@@ -46,24 +54,34 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* FLOTA AUTOS */}
-        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm">
+        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative">
           <div className="font-bold text-gray-700 text-sm">FLOTA AUTOS</div>
-          <div className="col-span-6 grid grid-cols-6 gap-4 items-end">
-            {dashboardData.map(({ year, fleet }) => (
-              <div key={year} className="flex flex-col items-center relative h-20">
-                <div className="font-bold text-gray-800 text-sm mb-1">{fleet.total}</div>
-                <div className="w-10 flex flex-col justify-end" style={{ height: `${(fleet.total / maxFleet) * 100}%`}}>
-                  {fleet.breakdown.map((item) => (
-                    <div key={item.label} className={item.color} style={{ height: `${(item.value / fleet.total) * 100}%` }}></div>
-                  ))}
-                </div>
-                {year === 'P.Y. 25/26' && (
-                  <div className="absolute left-1/2 bottom-0 ml-6 text-xs text-gray-500 whitespace-nowrap">
-                    {fleet.breakdown.slice().reverse().map(b => <div key={b.label}>{b.label}</div>)}
+          <div className="col-span-6 relative">
+            <div className="grid grid-cols-6 gap-4 items-end">
+              {dashboardData.map(({ year, fleet }) => (
+                <div key={year} className="flex flex-col items-center relative h-20">
+                  <div className="font-bold text-gray-800 text-sm mb-1">{fleet.total}</div>
+                  {/* Stacked bars */}
+                  <div className="w-10 bg-gray-200 flex flex-col rounded-t overflow-hidden" style={{ height: `${(fleet.total / maxFleet) * 100}%`}}>
+                    {fleet.breakdown.map((item) => (
+                      <div 
+                        key={item.label} 
+                        className={`${item.color} w-full`} 
+                        style={{ height: `${(item.value / fleet.total) * 100}%` }}
+                      ></div>
+                    ))}
                   </div>
-                )}
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
+            
+            {/* Legend moved to the right with adjusted padding */}
+            <div className="absolute left-[100%] top-1/2 transform -translate-y-1/2 flex flex-col justify-center pl-2 w-max">
+               <FleetLegendItem color="bg-teal-700" label="KINTOO" />
+               <FleetLegendItem color="bg-lime-400" label="AMAUTA UY" />
+               <FleetLegendItem color="bg-purple-600" label="AMAUTA ARG" />
+               <FleetLegendItem color="bg-cyan-400" label="FYO" />
+            </div>
           </div>
         </div>
 

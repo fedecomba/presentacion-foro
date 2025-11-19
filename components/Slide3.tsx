@@ -54,15 +54,6 @@ const Slide3: React.FC = () => {
     <div className="w-full max-w-7xl mx-auto bg-gray-50 p-4 sm:p-8 rounded-xl shadow-lg border border-gray-200 flex flex-col">
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Focos OM y Compras 2026</h1>
       
-      <div className="max-w-5xl mx-auto mb-8 text-center">
-        <div className="bg-white px-8 py-5 rounded-2xl shadow-sm border border-indigo-100 relative overflow-hidden inline-block text-left sm:text-center">
-           <div className="absolute top-0 left-0 w-1.5 h-full bg-indigo-500"></div>
-          <p className="text-lg text-gray-700 italic relative z-10 pl-2 sm:pl-0">
-            “Los datos muestran que la única forma de sostener el crecimiento operativo sin ampliar estructura es <span className="font-bold text-indigo-600 bg-indigo-50 px-1 rounded">digitalizar, automatizar y unificar procesos</span>. Por eso estos son nuestros focos para 2026.”
-          </p>
-        </div>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-grow items-stretch">
         
         {/* A) Costos y Eficiencia */}
