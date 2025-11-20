@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { dashboardData } from '../constants';
 import BudgetBreakdownChart from './BudgetBreakdownChart';
 import RealStateBreakdown from './RealStateBreakdown';
+import FleetBreakdown from './FleetBreakdown';
 
 const GreenTag: React.FC<{ text: string }> = ({ text }) => (
   <div className="relative inline-block bg-green-500 text-white px-2 py-0.5 text-xs rounded-sm shadow">
@@ -23,6 +24,7 @@ const Dashboard: React.FC = () => {
   const maxFleet = Math.max(...dashboardData.map(d => d.fleet.total));
   const [hoveredBudgetYear, setHoveredBudgetYear] = useState<string | null>(null);
   const [hoveredRealStateYear, setHoveredRealStateYear] = useState<string | null>(null);
+  const [hoveredFleetYear, setHoveredFleetYear] = useState<string | null>(null);
 
   // Shared style for row headers to ensure consistency and visual hierarchy
   const rowHeaderClass = "text-xs font-semibold text-gray-500 uppercase tracking-wider";
@@ -69,7 +71,6 @@ const Dashboard: React.FC = () => {
                   )}
                 </div>
                 
-                {/* Reverted to original rectangular style */}
                 <div className="w-full bg-gray-200 rounded h-2 mt-2">
                   <div className="bg-blue-900 h-2 rounded" style={{ width: `${(office.sqm / maxOfficeSqm) * 100}%` }}></div>
                 </div>
@@ -80,12 +81,31 @@ const Dashboard: React.FC = () => {
 
         {/* FLOTA AUTOS */}
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative">
-          <div className={rowHeaderClass}>FLOTA AUTOS</div>
+          <div className={rowHeaderClass}>AUTOMOTOR</div>
           <div className="col-span-6 relative">
             <div className="grid grid-cols-6 gap-4 items-end">
               {dashboardData.map(({ year, fleet }) => (
                 <div key={year} className="flex flex-col items-center relative h-20">
-                  <div className="font-bold text-gray-800 text-sm mb-1">{fleet.total}</div>
+                  {/* Number Value with Hover logic */}
+                  <div 
+                    className={`font-bold text-sm mb-1 relative z-20
+                      ${year === '24/25' ? 'cursor-pointer text-blue-800 underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-800'}
+                    `}
+                    onMouseEnter={() => year === '24/25' && setHoveredFleetYear(year)}
+                    onMouseLeave={() => setHoveredFleetYear(null)}
+                  >
+                    {fleet.total}
+
+                    {/* Fleet Popover */}
+                    {year === '24/25' && hoveredFleetYear === '24/25' && (
+                      <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in w-max">
+                         {/* Arrow pointing up (box is below) */}
+                         <div className="absolute -top-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-700 z-50"></div>
+                         <FleetBreakdown />
+                      </div>
+                    )}
+                  </div>
+
                   {/* Stacked bars */}
                   <div className="w-10 bg-gray-200 flex flex-col rounded-t overflow-hidden" style={{ height: `${(fleet.total / maxFleet) * 100}%`}}>
                     {fleet.breakdown.map((item) => (

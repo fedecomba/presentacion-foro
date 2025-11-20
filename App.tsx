@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import Dashboard from './components/Dashboard';
-import Slide2 from './components/Slide2';
 import Slide3 from './components/Slide3';
 
 const ArrowButton: React.FC<{ direction: 'left' | 'right'; onClick: () => void; disabled?: boolean }> = ({ direction, onClick, disabled }) => (
@@ -23,7 +22,7 @@ const ArrowButton: React.FC<{ direction: 'left' | 'right'; onClick: () => void; 
 
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
-  const totalSlides = 3;
+  const totalSlides = 2;
 
   const goToNextSlide = () => {
     setCurrentSlide(prev => (prev < totalSlides ? prev + 1 : prev));
@@ -38,8 +37,6 @@ const App: React.FC = () => {
       case 1:
         return <Dashboard />;
       case 2:
-        return <Slide2 />;
-      case 3:
         return <Slide3 />;
       default:
         return <Dashboard />;
