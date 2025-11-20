@@ -78,7 +78,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* FLOTA AUTOS */}
+        {/* AUTOMOTOR */}
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative">
           <div className={rowHeaderClass}>AUTOMOTOR</div>
           <div className="col-span-6 relative">
@@ -129,17 +129,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* COLABORADORES */}
-        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-12">
-          <div className={rowHeaderClass}>COLABORADORES</div>
-          <div className="col-span-6 grid grid-cols-6 gap-4">
-            {dashboardData.map(({ year, collaborators }) => (
-              <div key={year} className="text-center font-bold text-gray-800 text-sm sm:text-base">{collaborators}</div>
-            ))}
-          </div>
-        </div>
-        
-        {/* PRESUPUESTO */}
+        {/* PRESUPUESTO (Moved above COLABORADORES) */}
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16 relative">
           <div className={rowHeaderClass}>PRESUPUESTO</div>
           <div className="col-span-6 grid grid-cols-6 gap-4">
@@ -169,6 +159,17 @@ const Dashboard: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* COLABORADORES (Moved below PRESUPUESTO) */}
+        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-12">
+          <div className={rowHeaderClass}>COLABORADORES</div>
+          <div className="col-span-6 grid grid-cols-6 gap-4">
+            {dashboardData.map(({ year, collaborators }) => (
+              <div key={year} className="text-center font-bold text-gray-800 text-sm sm:text-base">{collaborators}</div>
+            ))}
+          </div>
+        </div>
+        
       </div>
     </div>
   );
