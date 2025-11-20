@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { dashboardData } from '../constants';
 import BudgetBreakdownChart from './BudgetBreakdownChart';
 import RealStateBreakdown from './RealStateBreakdown';
 import FleetBreakdown from './FleetBreakdown';
+import BenefitsChart from './BenefitsChart';
 
 const GreenTag: React.FC<{ text: string }> = ({ text }) => (
   <div className="relative inline-block bg-green-500 text-white px-2 py-0.5 text-xs rounded-sm shadow">
@@ -106,7 +108,7 @@ const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Stacked bars */}
-                  <div className="w-10 bg-gray-200 flex flex-col rounded-t overflow-hidden" style={{ height: `${(fleet.total / maxFleet) * 100}%`}}>
+                  <div className="w-10 bg-gray-200 flex flex-col justify-end rounded-t overflow-hidden" style={{ height: `${(fleet.total / maxFleet) * 100}%`}}>
                     {fleet.breakdown.map((item) => (
                       <div 
                         key={item.label} 
@@ -160,13 +162,15 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* COLABORADORES (Moved below PRESUPUESTO) */}
-        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-12">
-          <div className={rowHeaderClass}>COLABORADORES</div>
-          <div className="col-span-6 grid grid-cols-6 gap-4">
-            {dashboardData.map(({ year, collaborators }) => (
-              <div key={year} className="text-center font-bold text-gray-800 text-sm sm:text-base">{collaborators}</div>
-            ))}
+        {/* BENEFITS CHART (Replaces simple Collaborators row) */}
+        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm">
+          <div className={rowHeaderClass}>
+            BENEFICIOS: <br />
+            Monto anual x <br />
+            colaborador (USD)
+          </div>
+          <div className="col-span-6 relative">
+             <BenefitsChart />
           </div>
         </div>
         
