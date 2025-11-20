@@ -37,7 +37,7 @@ const CollapsibleCard: React.FC<{
 
   return (
     <div 
-      className="bg-white border border-gray-200 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
+      className="bg-white border border-gray-200 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md h-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -227,33 +227,106 @@ const Dashboard: React.FC = () => {
           <div className={`${rowHeaderClass} mt-3`}>
             DATOS E IA
           </div>
-          <div className="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
              {/* Card 1: Automatizaciones Operativas (Left, Hover) */}
              <CollapsibleCard title="Automatizaciones operativas" trigger="hover">
-                <ul className="list-none space-y-2 pl-1">
-                  {['Flujo de facturación', 'Desayuno cumpleaños', 'Reservas de salas', 'Alertas GPS', 'Reportes – Tasa de uso'].map((item, index) => (
-                     <li key={index} className="flex gap-2 items-center">
-                       <span className="text-purple-600 font-bold text-xs">•</span>
-                       <span>{item}</span>
-                     </li>
-                  ))}
+                <div className="flex flex-col gap-3">
+                  <ul className="list-none space-y-2.5">
+                    {/* Completed Items */}
+                    {[
+                      'Flujo de facturación',
+                      'Desayuno cumpleaños',
+                      'Reservas de salas'
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-2.5">
+                        <div className="bg-green-100 rounded-full p-0.5 flex-shrink-0">
+                          <svg className="w-3.5 h-3.5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                        <span className="text-gray-700 font-medium">{item}</span>
+                      </li>
+                    ))}
+
+                    {/* Pending/Other Items */}
+                    {[
+                      'Alertas GPS',
+                      'Reportes – Tasa de uso'
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-center gap-2.5">
+                         <div className="w-4 h-4 flex items-center justify-center flex-shrink-0">
+                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
+                         </div>
+                         <span className="text-gray-500">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  {/* Highlight Badge */}
+                  <div className="mt-1 bg-emerald-50 border border-emerald-100 rounded-md px-3 py-1.5 flex items-center justify-center w-fit shadow-sm">
+                    <span className="text-emerald-700 text-xs font-bold uppercase tracking-wide">
+                      Ahorro: 40 horas mensuales
+                    </span>
+                  </div>
+                </div>
+             </CollapsibleCard>
+
+             {/* Card 2: Aplicación en Flota Corporativa (Middle, Hover) */}
+             <CollapsibleCard title="Aplicación en Flota Corporativa" trigger="hover">
+                <ul className="list-none space-y-3">
+                  <li className="flex gap-2.5 items-start">
+                    <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
+                    <span className="text-gray-700 text-sm leading-relaxed">
+                      <strong className="text-gray-900">Gestión de datos:</strong> Dashboard mensual con datos de uso, reservas, duración de viaje, usuarios, solicitudes de hoteles y destinos frecuentes.
+                    </span>
+                  </li>
+                  <li className="flex gap-2.5 items-start">
+                    <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
+                    <span className="text-gray-700 text-sm leading-relaxed">
+                      <strong className="text-gray-900">Acceso al sistema:</strong>{' '}
+                      <a 
+                        href="https://reserva-autos.vercel.app/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 hover:underline transition-colors break-all"
+                      >
+                        https://reserva-autos.vercel.app/
+                      </a>
+                    </span>
+                  </li>
                 </ul>
              </CollapsibleCard>
 
-             {/* Card 2: Aplicación en Flota Corporativa (Right, Click) */}
-             <CollapsibleCard title="Aplicación en Flota Corporativa">
-                <ul className="list-none space-y-2">
-                  <li className="flex gap-2">
-                    <span className="text-purple-600 font-bold">•</span>
-                    <span>
-                      <strong>Predictivo:</strong> Modelo para anticipar fallas y mantenimientos (+80% precisión).
-                    </span>
+             {/* Card 3: Otros Proyectos (Right, Hover) */}
+             <CollapsibleCard title="Otros Proyectos" trigger="hover">
+                <ul className="list-none space-y-3">
+                  <li className="flex flex-col items-start gap-0.5">
+                    <div className="flex gap-2.5 items-center">
+                      <span className="text-purple-600 font-bold text-lg leading-none">•</span>
+                      <strong className="text-gray-900 text-sm">Fyo Metrics</strong>
+                    </div>
+                    <a 
+                      href="https://fyo-metrics-vf.vercel.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 hover:underline transition-colors text-xs ml-5 break-all"
+                    >
+                      https://fyo-metrics-vf.vercel.app/
+                    </a>
                   </li>
-                  <li className="flex gap-2">
-                    <span className="text-purple-600 font-bold">•</span>
-                    <span>
-                      <strong>Gestión:</strong> Dashboard mensual con uso, km, costos, siniestros y alertas.
-                    </span>
+                  <li className="flex flex-col items-start gap-0.5">
+                    <div className="flex gap-2.5 items-center">
+                      <span className="text-purple-600 font-bold text-lg leading-none">•</span>
+                      <strong className="text-gray-900 text-sm">TalentMatch AI</strong>
+                    </div>
+                    <a 
+                      href="https://talent-match-ai-five.vercel.app/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 hover:underline transition-colors text-xs ml-5 break-all"
+                    >
+                      https://talent-match-ai-five.vercel.app/
+                    </a>
                   </li>
                 </ul>
              </CollapsibleCard>
