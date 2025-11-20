@@ -42,7 +42,7 @@ const Slide2: React.FC = () => {
             <ListItem icon={<GrowthIcon />}>M² de Oficina: <strong>+181%</strong> (1.160 → 3.265)</ListItem>
             <ListItem icon={<GrowthIcon />}>Flota de Autos: <strong>+128%</strong> (21 → 48)</ListItem>
             <ListItem icon={<GrowthIcon />}>Presupuesto Admin: <strong>+365%</strong> (USD 430K → 2M)</ListItem>
-            <ListItem icon={<TeamIcon />}>Colaboradores: <strong>+40%</strong> (279 → 391)</ListItem>
+            <ListItem icon={<TeamIcon />}>Colaboradores: <strong>+43%</strong> (279 → 400)</ListItem>
             <ListItem icon={<TeamIcon />}>Equipo OM: <strong>3 → 5 personas</strong></ListItem>
             <ListItem icon={<GrowthIcon />}>La relación OM/Nómina se mantuvo entre <strong>1,1% y 1,3%</strong>, sin desbordarse.</ListItem>
           </ul>

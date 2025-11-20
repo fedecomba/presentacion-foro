@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import { dashboardData } from '../constants';
-import RatioChart from './RatioChart';
 import BudgetBreakdownChart from './BudgetBreakdownChart';
+import RealStateBreakdown from './RealStateBreakdown';
 
 const GreenTag: React.FC<{ text: string }> = ({ text }) => (
   <div className="relative inline-block bg-green-500 text-white px-2 py-0.5 text-xs rounded-sm shadow">
@@ -21,6 +22,7 @@ const Dashboard: React.FC = () => {
   const maxOfficeSqm = Math.max(...dashboardData.map(d => d.office.sqm));
   const maxFleet = Math.max(...dashboardData.map(d => d.fleet.total));
   const [hoveredBudgetYear, setHoveredBudgetYear] = useState<string | null>(null);
+  const [hoveredRealStateYear, setHoveredRealStateYear] = useState<string | null>(null);
 
   // Shared style for row headers to ensure consistency and visual hierarchy
   const rowHeaderClass = "text-xs font-semibold text-gray-500 uppercase tracking-wider";
@@ -41,12 +43,32 @@ const Dashboard: React.FC = () => {
       <div className="space-y-3">
         {/* Mt.2 OFICINA */}
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm">
-          <div className={rowHeaderClass}>Mt.2 OFICINA</div>
-          <div className="col-span-6 grid grid-cols-6 gap-4 items-start">
+          <div className={rowHeaderClass}>
+            REAL STATE: <br />
+            Mt2 Oficina
+          </div>
+          <div className="col-span-6 grid grid-cols-6 gap-4 items-start relative">
             {dashboardData.map(({ year, office }) => (
-              <div key={year} className="flex flex-col items-center justify-end h-16">
-                 {office.tag && <GreenTag text={office.tag} />}
-                <div className="font-bold text-gray-800 text-sm mt-1">{office.sqm}</div>
+              <div key={year} className="flex flex-col items-center justify-end h-16 relative">
+                <div 
+                  className={`font-bold text-sm mt-1 relative
+                    ${year === '24/25' ? 'text-blue-800 cursor-pointer underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-800'}
+                  `}
+                  onMouseEnter={() => year === '24/25' && setHoveredRealStateYear(year)}
+                  onMouseLeave={() => setHoveredRealStateYear(null)}
+                >
+                  {office.sqm}
+                  
+                  {/* Real State Popover */}
+                  {year === '24/25' && hoveredRealStateYear === '24/25' && (
+                    <div className="absolute top-full mt-4 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in">
+                      {/* Triangular arrow pointing up */}
+                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-600 z-50"></div>
+                      <RealStateBreakdown />
+                    </div>
+                  )}
+                </div>
+                
                 {/* Reverted to original rectangular style */}
                 <div className="w-full bg-gray-200 rounded h-2 mt-2">
                   <div className="bg-blue-900 h-2 rounded" style={{ width: `${(office.sqm / maxOfficeSqm) * 100}%` }}></div>
@@ -129,12 +151,6 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Ratio Chart */}
-      <div className="mt-8">
-        <RatioChart />
-      </div>
-
     </div>
   );
 };

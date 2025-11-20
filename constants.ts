@@ -95,7 +95,7 @@ export const dashboardData: YearData[] = [
         { label: 'FYO', value: 16, color: 'bg-cyan-400' },
       ],
     },
-    collaborators: 391,
+    collaborators: 400,
     budget: { value: 'USD 2 M', color: 'text-gray-700' },
     ratio: {
       barValue: 5,
@@ -116,7 +116,7 @@ export const dashboardData: YearData[] = [
         { label: 'FYO', value: 20, color: 'bg-cyan-400' },
       ],
     },
-    collaborators: 391,
+    collaborators: 400,
     budget: { value: 'USD 1,8 M', color: 'text-gray-700' },
     ratio: {
       barValue: 5,
