@@ -1,98 +1,119 @@
+
 import React from 'react';
 
+// Global breakdown percentages approximation:
+// Real State: 44% | Benefits: 40% | Workplace: 9% | Automotor: 7%
+
 const data = [
-  { label: 'Granos', workplace: 90000, realState: 420000, benefits: 390000, automotor: 80000 },
-  { label: 'Acopio', workplace: 30000, realState: 140000, benefits: 120000, automotor: 25000 },
-  { label: 'Amauta', workplace: 25000, realState: 125000, benefits: 110000, automotor: 20000 },
-  { label: 'FyoCapita', workplace: 20000, realState: 115000, benefits: 105000, automotor: 18000 },
-  { label: 'Insumos', workplace: 10000, realState: 45000, benefits: 40000, automotor: 5000 },
-  { label: 'FyoFoods', workplace: 5000, realState: 15000, benefits: 15000, automotor: 2000 },
-  { label: 'BIOND', workplace: 5000, realState: 15000, benefits: 15000, automotor: 2000 },
-  { label: 'Holding', workplace: 0, realState: 0, benefits: 0, automotor: 0 },
-  { label: 'Agrofy', workplace: 0, realState: 0, benefits: 0, automotor: 0 },
+  { label: 'Granos', total: 980000, percent: '49%', breakdown: { realState: 431200, benefits: 392000, workplace: 88200, automotor: 68600 } },
+  { label: 'Acopio', total: 320000, percent: '16%', breakdown: { realState: 140800, benefits: 128000, workplace: 28800, automotor: 22400 } },
+  { label: 'Amauta', total: 280000, percent: '14%', breakdown: { realState: 123200, benefits: 112000, workplace: 25200, automotor: 19600 } },
+  { label: 'Fyo Capital', total: 260000, percent: '13%', breakdown: { realState: 114400, benefits: 104000, workplace: 23400, automotor: 18200 } },
+  { label: 'Insumos', total: 100000, percent: '5%', breakdown: { realState: 44000, benefits: 40000, workplace: 9000, automotor: 7000 } },
+  { label: 'Fyo Foods', total: 40000, percent: '2%', breakdown: { realState: 17600, benefits: 16000, workplace: 3600, automotor: 2800 } },
+  { label: 'BIOND', total: 40000, percent: '2%', breakdown: { realState: 17600, benefits: 16000, workplace: 3600, automotor: 2800 } },
+  { label: 'Holding', total: 0, percent: '0%', breakdown: { realState: 0, benefits: 0, workplace: 0, automotor: 0 } },
+  { label: 'Agrofy', total: 0, percent: '0%', breakdown: { realState: 0, benefits: 0, workplace: 0, automotor: 0 } },
 ];
 
 const LegendItem: React.FC<{ color: string; label: string }> = ({ color, label }) => (
-  <div className="flex items-center gap-1.5">
-    <div className={`w-3 h-3 ${color}`}></div>
-    <span className="text-xs text-gray-600">{label}</span>
+  <div className="flex items-center gap-2">
+    <div className={`w-3 h-3 ${color} rounded-sm`}></div>
+    <span className="text-[10px] font-bold text-gray-300 uppercase tracking-wide">{label}</span>
   </div>
 );
 
 const BudgetBreakdownChart: React.FC = () => {
-  const maxVal = 1000000; // Scale up to 1M based on image
+  const maxVal = 1100000; // Scale for the chart
 
   const formatCurrency = (val: number) => {
     if (val === 0) return '$0';
-    return `$${(val).toLocaleString()}`;
+    // Format as $980,000
+    return `$${val.toLocaleString('en-US')}`;
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-xl border border-gray-300 w-[600px] z-50 relative">
-      <h3 className="text-center font-bold text-gray-700 mb-4 text-lg">
-        Cierre Presupuesto Ej. 24-25 - Distribución por División y Rubro
-      </h3>
+    <div className="bg-[#1a1a1a] p-5 rounded-lg shadow-2xl border border-gray-700 w-[650px] z-50 relative font-sans text-white">
+      {/* Header */}
+      <div className="flex justify-between items-start mb-6 border-b border-gray-700 pb-3">
+        <div className="flex flex-col">
+          <h3 className="text-lg font-extrabold text-amber-500 uppercase leading-none">
+            DISTRIBUCIÓN DEL PRESUPUESTO <br /> OFFICE MANAGER
+          </h3>
+        </div>
+        <div className="text-right">
+          <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">TOTAL</div>
+          <div className="text-amber-500 font-bold text-lg leading-none">USD 2.000.000</div>
+          <div className="text-amber-500 font-bold text-sm leading-none">(100%)</div>
+        </div>
+      </div>
 
       {/* Legend */}
-      <div className="flex justify-center gap-4 mb-6">
-        <LegendItem color="bg-indigo-600" label="Workplace" />
-        <LegendItem color="bg-emerald-500" label="Real State" />
-        <LegendItem color="bg-amber-500" label="Beneficios" />
-        <LegendItem color="bg-red-500" label="Automotor" />
+      <div className="flex justify-start gap-6 mb-6 bg-[#252525] p-2 rounded border border-gray-700">
+        <LegendItem color="bg-amber-500" label="Real State (44%)" />
+        <LegendItem color="bg-emerald-400" label="Beneficios (40%)" />
+        <LegendItem color="bg-gray-600" label="Workplace (9%)" />
+        <LegendItem color="bg-gray-500" label="Automotor (7%)" />
       </div>
 
       {/* Chart Area */}
-      <div className="flex h-64">
-        {/* Y Axis */}
-        <div className="flex flex-col justify-between text-xs text-gray-500 pr-2 text-right w-24 h-[85%]">
-            <span>$1,000,000</span>
-            <span>$900,000</span>
-            <span>$800,000</span>
-            <span>$700,000</span>
-            <span>$600,000</span>
-            <span>$500,000</span>
-            <span>$400,000</span>
-            <span>$300,000</span>
-            <span>$200,000</span>
-            <span>$100,000</span>
-            <span>$0</span>
-        </div>
+      <div className="flex h-64 items-end gap-2 pb-6">
+        {data.map((item, idx) => {
+          const total = item.total;
+          const heightPercent = total > 0 ? (total / maxVal) * 100 : 0;
+          
+          // Calculate segment heights relative to the bar's total height
+          // Since we calculated values based on % of total, we can use simple proportions
+          const rsH = total > 0 ? (item.breakdown.realState / total) * 100 : 0;
+          const benH = total > 0 ? (item.breakdown.benefits / total) * 100 : 0;
+          const wpH = total > 0 ? (item.breakdown.workplace / total) * 100 : 0;
+          const autoH = total > 0 ? (item.breakdown.automotor / total) * 100 : 0;
 
-        {/* Bars */}
-        <div className="flex-1 flex items-end justify-between pl-2 h-[85%] border-l border-b border-gray-300 relative">
-            {/* Grid Lines */}
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-                <div 
-                    key={i} 
-                    className="absolute w-full border-t border-gray-100" 
-                    style={{ bottom: `${i * 10}%`, left: 0, zIndex: 0 }} 
-                />
-            ))}
+          return (
+            <div key={idx} className="relative flex-1 flex flex-col items-center justify-end h-full group">
+              {/* Value Labels above bar */}
+              {total > 0 ? (
+                 <div className="mb-2 flex flex-col items-center opacity-90 transition-opacity">
+                   <span className="text-white font-bold text-xs leading-none mb-0.5">{item.percent}</span>
+                   <span className="text-gray-400 font-semibold text-[10px] leading-none">{formatCurrency(total)}</span>
+                 </div>
+              ) : (
+                 <div className="mb-2 flex flex-col items-center opacity-50">
+                   <span className="text-gray-500 font-bold text-xs leading-none">0%</span>
+                   <span className="text-gray-600 font-semibold text-[10px] leading-none">$0</span>
+                 </div>
+              )}
 
-            {data.map((item, idx) => {
-                const total = item.workplace + item.realState + item.benefits + item.automotor;
-                const heightPercent = (total / maxVal) * 100;
-                
-                return (
-                    <div key={idx} className="relative flex flex-col justify-end items-center w-full mx-1 z-10 group h-full">
-                        <div className="w-full flex flex-col-reverse shadow-sm hover:opacity-90 transition-opacity" style={{ height: `${heightPercent}%` }}>
-                            {/* Stack order: Bottom to Top visually in HTML is usually Top to Bottom, so we use flex-col-reverse to stack upwards */}
-                            <div style={{ height: `${(item.workplace / total) * 100}%` }} className="bg-indigo-600 w-full" title={`Workplace: ${formatCurrency(item.workplace)}`}></div>
-                            <div style={{ height: `${(item.realState / total) * 100}%` }} className="bg-emerald-500 w-full" title={`Real State: ${formatCurrency(item.realState)}`}></div>
-                            <div style={{ height: `${(item.benefits / total) * 100}%` }} className="bg-amber-500 w-full" title={`Beneficios: ${formatCurrency(item.benefits)}`}></div>
-                            <div style={{ height: `${(item.automotor / total) * 100}%` }} className="bg-red-500 w-full rounded-t-sm" title={`Automotor: ${formatCurrency(item.automotor)}`}></div>
+              {/* Stacked Bar */}
+              <div className="w-full rounded-t-sm overflow-hidden flex flex-col justify-end bg-gray-800/30 relative" style={{ height: total > 0 ? `${heightPercent}%` : '4px' }}>
+                {total > 0 && (
+                    <>
+                        {/* Render from bottom up visually: Automotor -> Workplace -> Benefits -> RealState? 
+                            Standard CSS Flex col stacks top-down. So first div is top.
+                            Order in Image usually: Bottom is often the base. 
+                            Let's assume: Orange (RS) at bottom, then Green, then D.Gray, then L.Gray.
+                            To do Bottom-up in flex-col:
+                            We can use flex-col-reverse.
+                        */}
+                        <div className="w-full flex flex-col-reverse h-full">
+                            <div style={{ height: `${rsH}%` }} className="bg-amber-500 w-full transition-all duration-300 group-hover:brightness-110" title={`Real State: ${formatCurrency(item.breakdown.realState)}`}></div>
+                            <div style={{ height: `${benH}%` }} className="bg-emerald-400 w-full transition-all duration-300 group-hover:brightness-110" title={`Beneficios: ${formatCurrency(item.breakdown.benefits)}`}></div>
+                            <div style={{ height: `${wpH}%` }} className="bg-gray-600 w-full transition-all duration-300 group-hover:brightness-110" title={`Workplace: ${formatCurrency(item.breakdown.workplace)}`}></div>
+                            <div style={{ height: `${autoH}%` }} className="bg-gray-500 w-full transition-all duration-300 group-hover:brightness-110" title={`Automotor: ${formatCurrency(item.breakdown.automotor)}`}></div>
                         </div>
-                        <span className="absolute -bottom-8 text-[10px] font-medium text-gray-600 text-center w-full truncate px-0.5" title={item.label}>
-                            {item.label}
-                        </span>
-                    </div>
-                );
-            })}
-        </div>
-      </div>
-       {/* Y Axis Label */}
-       <div className="absolute -left-4 top-1/2 -rotate-90 text-xs text-gray-500 font-medium transform -translate-y-1/2">
-            Monto Asignado (USD)
+                    </>
+                )}
+              </div>
+
+              {/* X Axis Label */}
+              <div className="mt-2 h-8 flex items-start justify-center w-full">
+                 <span className="text-[9px] font-bold text-gray-400 uppercase text-center leading-tight break-words w-full px-0.5">
+                    {item.label}
+                 </span>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

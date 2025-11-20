@@ -200,8 +200,8 @@ const Dashboard: React.FC = () => {
                 {/* Popover Chart for 24/25 */}
                 {year === '24/25' && hoveredBudgetYear === '24/25' && (
                   <div className="absolute bottom-full mb-4 left-1/2 transform -translate-x-[85%] z-50 animate-fade-in">
-                     {/* Triangular arrow pointing down */}
-                    <div className="absolute -bottom-2 left-[85%] transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-r border-b border-gray-300 z-50"></div>
+                     {/* Triangular arrow pointing down, updated color to match dark chart */}
+                    <div className="absolute -bottom-2 left-[85%] transform -translate-x-1/2 w-4 h-4 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700 z-50"></div>
                     <BudgetBreakdownChart />
                   </div>
                 )}
