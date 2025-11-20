@@ -20,6 +20,54 @@ const FleetLegendItem: React.FC<{ color: string; label: string }> = ({ color, la
   </div>
 );
 
+const CollapsibleCard: React.FC<{ 
+  title: string; 
+  children: React.ReactNode; 
+  trigger?: 'click' | 'hover';
+}> = ({ title, children, trigger = 'click' }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleMouseEnter = () => {
+    if (trigger === 'hover') setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (trigger === 'hover') setIsOpen(false);
+  };
+
+  return (
+    <div 
+      className="bg-white border border-gray-200 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <button
+        onClick={() => trigger === 'click' && setIsOpen(!isOpen)}
+        className={`w-full flex items-center justify-between p-3 text-left focus:outline-none ${trigger === 'hover' ? 'cursor-default' : 'cursor-pointer'}`}
+      >
+        <div className="flex items-center gap-2">
+           {/* Decorative dot */}
+           <div className={`w-2 h-2 rounded-full ${isOpen ? 'bg-purple-600' : 'bg-gray-300'} transition-colors`}></div>
+           <span className="font-bold text-sm text-gray-700">{title}</span>
+        </div>
+        <div className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+           <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+           </svg>
+        </div>
+      </button>
+      
+      <div 
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}
+      >
+        <div className="p-3 pt-0 border-t border-transparent text-sm text-gray-600 bg-gray-50/50 rounded-b-lg">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Dashboard: React.FC = () => {
   const maxOfficeSqm = Math.max(...dashboardData.map(d => d.office.sqm));
   const maxFleet = Math.max(...dashboardData.map(d => d.fleet.total));
@@ -131,7 +179,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* PRESUPUESTO (Moved above COLABORADORES) */}
+        {/* PRESUPUESTO */}
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16 relative">
           <div className={rowHeaderClass}>PRESUPUESTO</div>
           <div className="col-span-6 grid grid-cols-6 gap-4">
@@ -162,7 +210,7 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* BENEFITS CHART (Replaces simple Collaborators row) */}
+        {/* BENEFICIOS */}
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm">
           <div className={rowHeaderClass}>
             BENEFICIOS: <br />
@@ -171,6 +219,44 @@ const Dashboard: React.FC = () => {
           </div>
           <div className="col-span-6 relative">
              <BenefitsChart />
+          </div>
+        </div>
+
+        {/* DATOS E IA - Collapsible Cards */}
+        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-start bg-white p-3 rounded-lg shadow-sm">
+          <div className={`${rowHeaderClass} mt-3`}>
+            DATOS E IA
+          </div>
+          <div className="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+             {/* Card 1: Automatizaciones Operativas (Left, Hover) */}
+             <CollapsibleCard title="Automatizaciones operativas" trigger="hover">
+                <ul className="list-none space-y-2 pl-1">
+                  {['Flujo de facturación', 'Desayuno cumpleaños', 'Reservas de salas', 'Alertas GPS', 'Reportes – Tasa de uso'].map((item, index) => (
+                     <li key={index} className="flex gap-2 items-center">
+                       <span className="text-purple-600 font-bold text-xs">•</span>
+                       <span>{item}</span>
+                     </li>
+                  ))}
+                </ul>
+             </CollapsibleCard>
+
+             {/* Card 2: Aplicación en Flota Corporativa (Right, Click) */}
+             <CollapsibleCard title="Aplicación en Flota Corporativa">
+                <ul className="list-none space-y-2">
+                  <li className="flex gap-2">
+                    <span className="text-purple-600 font-bold">•</span>
+                    <span>
+                      <strong>Predictivo:</strong> Modelo para anticipar fallas y mantenimientos (+80% precisión).
+                    </span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-purple-600 font-bold">•</span>
+                    <span>
+                      <strong>Gestión:</strong> Dashboard mensual con uso, km, costos, siniestros y alertas.
+                    </span>
+                  </li>
+                </ul>
+             </CollapsibleCard>
           </div>
         </div>
         
