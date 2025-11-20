@@ -84,7 +84,7 @@ const Dashboard: React.FC = () => {
           <div className="col-span-6 relative">
             <div className="grid grid-cols-6 gap-4 items-end">
               {dashboardData.map(({ year, fleet }) => (
-                <div key={year} className="flex flex-col items-center relative h-20">
+                <div key={year} className="flex flex-col items-center justify-end relative h-20">
                   {/* Number Value with Hover logic */}
                   <div 
                     className={`font-bold text-sm mb-1 relative z-20
