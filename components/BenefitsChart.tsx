@@ -83,7 +83,8 @@ const BenefitsChart: React.FC = () => {
 
       {/* Data Points & Labels */}
       {points.map((p, i) => {
-         const isLast = i === data.length - 1;
+         // Target the second to last item ($1954 at index 4) instead of the last item
+         const isInteractive = i === 4;
 
          return (
           <div 
@@ -96,7 +97,7 @@ const BenefitsChart: React.FC = () => {
               {/* Label */}
               <span 
                 className={`mb-2.5 text-xs font-bold tracking-tight transition-colors duration-200
-                  ${isLast ? 'text-blue-700 cursor-pointer underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-700'}
+                  ${isInteractive ? 'text-blue-700 cursor-pointer underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-700'}
                 `}
               >
                 ${data[i].value.toLocaleString()}
@@ -104,11 +105,11 @@ const BenefitsChart: React.FC = () => {
               
               {/* Dot */}
               <div className={`w-3.5 h-3.5 rounded-full border-[2px] border-white shadow-sm transition-transform duration-200
-                  ${isLast && hoveredIndex === i ? 'bg-blue-600 scale-125' : 'bg-[#0066CC]'}
+                  ${isInteractive && hoveredIndex === i ? 'bg-blue-600 scale-125' : 'bg-[#0066CC]'}
               `}></div>
 
-              {/* Tooltip for Last Item */}
-              {isLast && hoveredIndex === i && (
+              {/* Tooltip for Interactive Item */}
+              {isInteractive && hoveredIndex === i && (
                 <div className="absolute bottom-full mb-4 left-1/2 transform -translate-x-[85%] z-50 animate-fade-in">
                    {/* Render the component instead of the image */}
                    <IndustryDistributionChart />

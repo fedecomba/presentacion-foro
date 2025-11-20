@@ -93,7 +93,7 @@ const Dashboard: React.FC = () => {
       {/* Metric Rows */}
       <div className="space-y-3">
         {/* Mt.2 OFICINA */}
-        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm">
+        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative transition-all duration-200 ${hoveredRealStateYear === '24/25' ? 'z-50' : ''}`}>
           <div className={rowHeaderClass}>
             REAL STATE: <br />
             Mt2 Oficina
@@ -129,7 +129,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* AUTOMOTOR */}
-        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative">
+        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative transition-all duration-200 ${hoveredFleetYear === '24/25' ? 'z-50' : ''}`}>
           <div className={rowHeaderClass}>AUTOMOTOR</div>
           <div className="col-span-6 relative">
             <div className="grid grid-cols-6 gap-4 items-end">
@@ -180,7 +180,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* PRESUPUESTO */}
-        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16 relative">
+        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16 relative transition-all duration-200 ${hoveredBudgetYear === '24/25' ? 'z-50' : ''}`}>
           <div className={rowHeaderClass}>PRESUPUESTO</div>
           <div className="col-span-6 grid grid-cols-6 gap-4">
             {dashboardData.map(({ year, budget }) => (
