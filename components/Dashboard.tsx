@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { dashboardData } from '../constants';
 import BudgetBreakdownChart from './BudgetBreakdownChart';
@@ -122,10 +121,10 @@ const Dashboard: React.FC = () => {
             
             {/* Legend moved to the right with adjusted padding */}
             <div className="absolute left-[100%] top-1/2 transform -translate-y-1/2 flex flex-col justify-center pl-2 w-max">
-               <FleetLegendItem color="bg-teal-700" label="KINTOO" />
-               <FleetLegendItem color="bg-lime-400" label="AMAUTA UY" />
-               <FleetLegendItem color="bg-purple-600" label="AMAUTA ARG" />
-               <FleetLegendItem color="bg-cyan-400" label="FYO" />
+               <FleetLegendItem color="bg-amber-500" label="Amauta" />
+               <FleetLegendItem color="bg-emerald-400" label="Auto Beneficio" />
+               <FleetLegendItem color="bg-slate-500" label="Fyo" />
+               <FleetLegendItem color="bg-gray-400" label="Amauta UY" />
             </div>
           </div>
         </div>

@@ -5,10 +5,12 @@ export const dashboardData: YearData[] = [
     year: '20/21',
     office: { sqm: 1160 },
     fleet: {
-      total: 21,
+      total: 24,
       breakdown: [
-        { label: 'AMAUTA ARG', value: 11, color: 'bg-purple-600' },
-        { label: 'FYO', value: 10, color: 'bg-cyan-400' },
+        { label: 'Amauta UY', value: 2, color: 'bg-gray-400' },
+        { label: 'Fyo', value: 5, color: 'bg-slate-500' },
+        { label: 'Auto Beneficio', value: 5, color: 'bg-emerald-400' },
+        { label: 'Amauta', value: 12, color: 'bg-amber-500' },
       ],
     },
     collaborators: 279,
@@ -26,10 +28,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 32,
       breakdown: [
-        { label: 'KINTOO', value: 2, color: 'bg-teal-700' },
-        { label: 'AMAUTA UY', value: 3, color: 'bg-lime-400' },
-        { label: 'AMAUTA ARG', value: 15, color: 'bg-purple-600' },
-        { label: 'FYO', value: 12, color: 'bg-cyan-400' },
+        { label: 'Amauta UY', value: 3, color: 'bg-gray-400' },
+        { label: 'Fyo', value: 8, color: 'bg-slate-500' },
+        { label: 'Auto Beneficio', value: 5, color: 'bg-emerald-400' },
+        { label: 'Amauta', value: 16, color: 'bg-amber-500' },
       ],
     },
     collaborators: 320,
@@ -47,10 +49,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 46,
       breakdown: [
-        { label: 'KINTOO', value: 3, color: 'bg-teal-700' },
-        { label: 'AMAUTA UY', value: 4, color: 'bg-lime-400' },
-        { label: 'AMAUTA ARG', value: 24, color: 'bg-purple-600' },
-        { label: 'FYO', value: 15, color: 'bg-cyan-400' },
+        { label: 'Amauta UY', value: 4, color: 'bg-gray-400' },
+        { label: 'Fyo', value: 9, color: 'bg-slate-500' },
+        { label: 'Auto Beneficio', value: 11, color: 'bg-emerald-400' },
+        { label: 'Amauta', value: 22, color: 'bg-amber-500' },
       ],
     },
     collaborators: 353,
@@ -68,10 +70,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 49,
       breakdown: [
-        { label: 'KINTOO', value: 3, color: 'bg-teal-700' },
-        { label: 'AMAUTA UY', value: 5, color: 'bg-lime-400' },
-        { label: 'AMAUTA ARG', value: 25, color: 'bg-purple-600' },
-        { label: 'FYO', value: 16, color: 'bg-cyan-400' },
+        { label: 'Amauta UY', value: 4, color: 'bg-gray-400' },
+        { label: 'Fyo', value: 9, color: 'bg-slate-500' },
+        { label: 'Auto Beneficio', value: 12, color: 'bg-emerald-400' },
+        { label: 'Amauta', value: 24, color: 'bg-amber-500' },
       ],
     },
     collaborators: 383,
@@ -89,10 +91,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 48,
       breakdown: [
-        { label: 'KINTOO', value: 3, color: 'bg-teal-700' },
-        { label: 'AMAUTA UY', value: 5, color: 'bg-lime-400' },
-        { label: 'AMAUTA ARG', value: 24, color: 'bg-purple-600' },
-        { label: 'FYO', value: 16, color: 'bg-cyan-400' },
+        { label: 'Amauta UY', value: 3, color: 'bg-gray-400' },
+        { label: 'Fyo', value: 9, color: 'bg-slate-500' },
+        { label: 'Auto Beneficio', value: 12, color: 'bg-emerald-400' },
+        { label: 'Amauta', value: 24, color: 'bg-amber-500' },
       ],
     },
     collaborators: 400,
@@ -110,10 +112,10 @@ export const dashboardData: YearData[] = [
     fleet: {
       total: 48,
       breakdown: [
-        { label: 'KINTOO', value: 2, color: 'bg-teal-700' },
-        { label: 'AMAUTA UY', value: 4, color: 'bg-lime-400' },
-        { label: 'AMAUTA ARG', value: 22, color: 'bg-purple-600' },
-        { label: 'FYO', value: 20, color: 'bg-cyan-400' },
+        { label: 'Amauta UY', value: 3, color: 'bg-gray-400' },
+        { label: 'Fyo', value: 9, color: 'bg-slate-500' },
+        { label: 'Auto Beneficio', value: 12, color: 'bg-emerald-400' },
+        { label: 'Amauta', value: 24, color: 'bg-amber-500' },
       ],
     },
     collaborators: 400,

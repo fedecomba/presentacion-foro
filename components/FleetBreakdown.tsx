@@ -2,10 +2,10 @@ import React from 'react';
 
 const FleetBreakdown: React.FC = () => {
   const items = [
-    { label: 'AMAUTA', value: 24, colorClass: 'border-yellow-500' },
+    { label: 'AMAUTA', value: 24, colorClass: 'border-amber-500' },
     { label: 'AUTO BENEFICIO', value: 12, colorClass: 'border-emerald-400' },
-    { label: 'FYO', value: 9, colorClass: 'border-gray-500' },
-    { label: 'AMAUTA UY', value: 3, colorClass: 'border-gray-500' },
+    { label: 'FYO', value: 9, colorClass: 'border-slate-500' },
+    { label: 'AMAUTA UY', value: 3, colorClass: 'border-gray-400' },
   ];
 
   return (
