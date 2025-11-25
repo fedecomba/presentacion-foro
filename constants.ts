@@ -107,7 +107,7 @@ export const dashboardData: YearData[] = [
     },
   },
   {
-    year: 'P.Y. 25/26',
+    year: 'FOCOS 25/26',
     office: { sqm: 3265, tag: '¿ Bs. As ?' },
     fleet: {
       total: 48,
