@@ -6,6 +6,32 @@ import RealStateBreakdown from './RealStateBreakdown';
 import FleetBreakdown from './FleetBreakdown';
 import BenefitsChart from './BenefitsChart';
 
+// --- Icons for Popovers ---
+
+const CurrencyIcon = () => (
+  <svg className="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+);
+
+const SearchIcon = () => (
+  <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+  </svg>
+);
+
+const GavelIcon = () => (
+  <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H3.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+  </svg>
+);
+
+const TrendingDownIcon = () => (
+  <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+  </svg>
+);
+
 const GreenTag: React.FC<{ text: string }> = ({ text }) => (
   <div className="relative inline-block bg-green-500 text-white px-2 py-0.5 text-xs rounded-sm shadow">
     <span>{text}</span>
@@ -293,32 +319,35 @@ const Dashboard: React.FC = () => {
                      {/* Triangular arrow pointing down */}
                     <div className="absolute -bottom-1.5 left-[85%] transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700 z-50"></div>
                     
-                    {/* Unified Card with Bullets and Emoji */}
+                    {/* Unified Card with Icons (No Emojis) */}
                     <div className="bg-[#1a1a1a] p-4 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-left w-[320px]">
-                        {/* Header */}
+                        {/* Header with SVG Icon */}
                         <div className="mb-3 border-b border-gray-700 pb-2 flex items-center gap-2">
-                          <span className="text-lg">💲</span>
+                          <CurrencyIcon />
                           <span className="text-amber-500 font-bold text-xs uppercase tracking-wider block">
                             Costos y Eficiencia - Ariba SAP
                           </span>
                         </div>
 
-                        {/* Bulleted List */}
+                        {/* Icon List */}
                         <ul className="space-y-3">
-                          <li className="flex items-start gap-2.5">
-                             <span className="text-blue-500 text-lg leading-none mt-[-2px]">•</span>
+                          <li className="flex items-start gap-3">
+                             {/* Lupa Icon for Transparency */}
+                             <div className="mt-0.5"><SearchIcon /></div>
                              <span className="text-xs text-gray-300 font-medium leading-snug">
                                Trazabilidad y transparencia end-to-end.
                              </span>
                           </li>
-                          <li className="flex items-start gap-2.5">
-                             <span className="text-blue-400 text-lg leading-none mt-[-2px]">•</span>
+                          <li className="flex items-start gap-3">
+                             {/* Gavel/Auction Icon */}
+                             <div className="mt-0.5"><GavelIcon /></div>
                              <span className="text-xs text-gray-300 font-medium leading-snug">
                                Subastas y comparativas automáticas.
                              </span>
                           </li>
-                          <li className="flex items-start gap-2.5">
-                             <span className="text-emerald-500 text-lg leading-none mt-[-2px]">•</span>
+                          <li className="flex items-start gap-3">
+                             {/* Trending Down Icon for Savings */}
+                             <div className="mt-0.5"><TrendingDownIcon /></div>
                              <span className="text-xs text-gray-300 font-medium leading-snug">
                                Ahorros estimados: <strong className="text-emerald-400">8% – 15%</strong>.
                              </span>
