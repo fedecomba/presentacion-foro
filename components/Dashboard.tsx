@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
   const rowHeaderClass = "text-xs font-semibold text-gray-500 uppercase tracking-wider";
 
   // Years that have Real State Popover interactions
-  const interactiveRealStateYears = ['22/23', '23/24', '24/25'];
+  const interactiveRealStateYears = ['22/23', '23/24', '24/25', 'FOCOS 25/26'];
   
   // Years that have Fleet Popover interactions
   const interactiveFleetYears = ['22/23', '24/25'];
@@ -146,6 +146,45 @@ const Dashboard: React.FC = () => {
                       <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-600 z-50"></div>
                       <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
                          <span className="font-bold text-xs tracking-wide">1750 mt2 PB + Piso 1</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Real State Popover (FOCOS 25/26) */}
+                  {year === 'FOCOS 25/26' && hoveredRealStateYear === 'FOCOS 25/26' && (
+                    <div className="absolute top-full mt-4 left-1/2 transform -translate-x-[85%] z-50 animate-fade-in w-max">
+                      {/* Triangular arrow pointing up */}
+                      <div className="absolute -top-2 left-[85%] transform -translate-x-1/2 w-4 h-4 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-600 z-50"></div>
+                      
+                      <div className="bg-[#1a1a1a] p-4 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-left w-[320px]">
+                        {/* Header */}
+                        <div className="mb-3 border-b border-gray-700 pb-2">
+                          <span className="text-amber-500 font-bold text-xs uppercase tracking-wider block">
+                            Servicios unificados a nivel regional
+                          </span>
+                        </div>
+
+                        {/* Bulleted List */}
+                        <ul className="space-y-3">
+                          <li className="flex items-start gap-2.5">
+                            <span className="text-amber-500 text-lg leading-none mt-[-2px]">•</span>
+                            <span className="text-xs text-gray-300 font-medium leading-snug">
+                              Contratos y SLAs estandarizados.
+                            </span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <span className="text-amber-500 text-lg leading-none mt-[-2px]">•</span>
+                            <span className="text-xs text-gray-300 font-medium leading-snug">
+                              Lograr un único proveedor regional en <strong className="text-white">2 rubros clave</strong>.
+                            </span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                            <span className="text-emerald-400 text-lg leading-none mt-[-2px]">•</span>
+                            <span className="text-xs text-gray-300 font-medium leading-snug">
+                              Reducción de costos: <strong className="text-emerald-400">10%</strong>.
+                            </span>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   )}
@@ -254,36 +293,37 @@ const Dashboard: React.FC = () => {
                      {/* Triangular arrow pointing down */}
                     <div className="absolute -bottom-1.5 left-[85%] transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700 z-50"></div>
                     
-                    {/* Content Card with Real State style */}
-                    <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-left w-[320px]">
+                    {/* Unified Card with Bullets and Emoji */}
+                    <div className="bg-[#1a1a1a] p-4 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-left w-[320px]">
                         {/* Header */}
-                        <div className="mb-3 pl-1">
-                          <span className="text-amber-500 font-bold text-xs uppercase tracking-wider border-b border-gray-600 pb-1 block">
+                        <div className="mb-3 border-b border-gray-700 pb-2 flex items-center gap-2">
+                          <span className="text-lg">💲</span>
+                          <span className="text-amber-500 font-bold text-xs uppercase tracking-wider block">
                             Costos y Eficiencia - Ariba SAP
                           </span>
                         </div>
 
-                        <div className="flex flex-col gap-2">
-                          {/* Item 1 */}
-                          <div className="bg-[#252525] border-l-[3px] border-blue-500 rounded-r p-2.5 shadow-sm">
-                             <p className="text-xs text-gray-200 leading-snug font-medium">
+                        {/* Bulleted List */}
+                        <ul className="space-y-3">
+                          <li className="flex items-start gap-2.5">
+                             <span className="text-blue-500 text-lg leading-none mt-[-2px]">•</span>
+                             <span className="text-xs text-gray-300 font-medium leading-snug">
                                Trazabilidad y transparencia end-to-end.
-                             </p>
-                          </div>
-
-                          {/* Item 2 */}
-                          <div className="bg-[#252525] border-l-[3px] border-blue-400 rounded-r p-2.5 shadow-sm">
-                             <p className="text-xs text-gray-200 leading-snug font-medium">
+                             </span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                             <span className="text-blue-400 text-lg leading-none mt-[-2px]">•</span>
+                             <span className="text-xs text-gray-300 font-medium leading-snug">
                                Subastas y comparativas automáticas.
-                             </p>
-                          </div>
-
-                          {/* Item 3 - Highlighted for Savings */}
-                          <div className="bg-[#252525] border-l-[3px] border-emerald-500 rounded-r p-2 flex justify-between items-center shadow-sm">
-                             <span className="text-xs text-gray-300 font-medium">Ahorros estimados</span>
-                             <span className="text-sm font-bold text-emerald-400">8% – 15%</span>
-                          </div>
-                        </div>
+                             </span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                             <span className="text-emerald-500 text-lg leading-none mt-[-2px]">•</span>
+                             <span className="text-xs text-gray-300 font-medium leading-snug">
+                               Ahorros estimados: <strong className="text-emerald-400">8% – 15%</strong>.
+                             </span>
+                          </li>
+                        </ul>
                     </div>
                   </div>
                 )}

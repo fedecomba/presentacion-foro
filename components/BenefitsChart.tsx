@@ -81,8 +81,9 @@ const BenefitsChart: React.FC = () => {
 
       {/* Data Points & Labels */}
       {points.map((p, i) => {
-          // Identify the specific point for value 1781
-          const isInteractive = data[i].value === 1781;
+          const isInteractive1781 = data[i].value === 1781;
+          const isInteractive1530 = data[i].value === 1530;
+          const isInteractive = isInteractive1781 || isInteractive1530;
 
           return (
             <div 
@@ -97,13 +98,54 @@ const BenefitsChart: React.FC = () => {
                   USD {data[i].value.toLocaleString()}
                 </span>
                 
-                {/* Popover Card */}
-                {isInteractive && hoveredIndex === i && (
+                {/* Popover Card for 1781 (Simple Style) */}
+                {isInteractive1781 && hoveredIndex === i && (
                   <div className="absolute bottom-full mb-3 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in w-max">
                      {/* Triangular arrow pointing down */}
                      <div className="absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700 z-50"></div>
                      <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
                         <span className="font-bold text-xs tracking-wide">Mejora en Beneficios</span>
+                     </div>
+                  </div>
+                )}
+
+                {/* Popover Card for 1530 (Updated Aesthetic with Emoji & Bullets) */}
+                {isInteractive1530 && hoveredIndex === i && (
+                  <div className="absolute bottom-full mb-3 left-1/2 transform -translate-x-[85%] z-50 animate-fade-in w-max">
+                     {/* Triangular arrow pointing down (offset to align with point) */}
+                     <div className="absolute -bottom-1.5 left-[85%] transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700 z-50"></div>
+                     
+                     {/* Card Content */}
+                     <div className="bg-[#1a1a1a] p-4 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-left w-[320px]">
+                        {/* Header */}
+                        <div className="mb-3 border-b border-gray-700 pb-2 flex items-center gap-2">
+                            <span className="text-lg">🎁</span>
+                            <span className="text-amber-500 font-bold text-xs uppercase tracking-wider block">
+                                Sistema de beneficios flexibles
+                            </span>
+                        </div>
+
+                        {/* Bulleted List */}
+                        <ul className="space-y-3">
+                          <li className="flex items-start gap-2.5">
+                             <span className="text-blue-400 text-lg leading-none mt-[-2px]">•</span>
+                             <span className="text-xs text-gray-300 font-medium leading-snug">
+                               El colaborador elige cómo usar sus puntos.
+                             </span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                             <span className="text-emerald-400 text-lg leading-none mt-[-2px]">•</span>
+                             <span className="text-xs text-gray-300 font-medium leading-snug">
+                               El paquete de beneficios se vuelve personalizable.
+                             </span>
+                          </li>
+                          <li className="flex items-start gap-2.5">
+                             <span className="text-purple-400 text-lg leading-none mt-[-2px]">•</span>
+                             <span className="text-xs text-gray-300 font-medium leading-snug">
+                               Optimiza costos al ofrecer flexibilidad sin aumentar el presupuesto.
+                             </span>
+                          </li>
+                        </ul>
                      </div>
                   </div>
                 )}
