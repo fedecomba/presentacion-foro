@@ -1,6 +1,5 @@
 
-import React, { useState } from 'react';
-import IndustryDistributionChart from './IndustryDistributionChart';
+import React from 'react';
 
 const data = [
   { value: 1166 },
@@ -17,8 +16,6 @@ interface Point {
 }
 
 const BenefitsChart: React.FC = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  
   // Set max Y slightly higher than max data for headroom
   const maxY = 2600; 
 
@@ -82,45 +79,21 @@ const BenefitsChart: React.FC = () => {
       </svg>
 
       {/* Data Points & Labels */}
-      {points.map((p, i) => {
-         // Target the second to last item ($1954 at index 4) instead of the last item
-         const isInteractive = i === 4;
-
-         return (
+      {points.map((p, i) => (
           <div 
             key={i} 
             className="absolute transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10" 
             style={{ left: `${p.x}%`, top: `${p.y}%` }}
-            onMouseEnter={() => setHoveredIndex(i)}
-            onMouseLeave={() => setHoveredIndex(null)}
           >
               {/* Label */}
-              <span 
-                className={`mb-2.5 text-xs font-bold tracking-tight transition-colors duration-200
-                  ${isInteractive ? 'text-blue-700 cursor-pointer underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-700'}
-                `}
-              >
-                ${data[i].value.toLocaleString()}
+              <span className="mb-2.5 text-xs font-bold tracking-tight text-gray-700 whitespace-nowrap">
+                USD {data[i].value.toLocaleString()}
               </span>
               
               {/* Dot */}
-              <div className={`w-3.5 h-3.5 rounded-full border-[2px] border-white shadow-sm transition-transform duration-200
-                  ${isInteractive && hoveredIndex === i ? 'bg-blue-600 scale-125' : 'bg-[#0066CC]'}
-              `}></div>
-
-              {/* Tooltip for Interactive Item */}
-              {isInteractive && hoveredIndex === i && (
-                <div className="absolute bottom-full mb-4 left-1/2 transform -translate-x-[85%] z-50 animate-fade-in">
-                   {/* Render the component instead of the image */}
-                   <IndustryDistributionChart />
-                   
-                   {/* Arrow pointing down */}
-                   <div className="absolute -bottom-1.5 left-[85%] transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700"></div>
-                </div>
-              )}
+              <div className="w-3.5 h-3.5 rounded-full border-[2px] border-white shadow-sm bg-[#0066CC]"></div>
           </div>
-         );
-      })}
+      ))}
     </div>
   );
 };

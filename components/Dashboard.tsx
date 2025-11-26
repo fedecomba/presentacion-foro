@@ -48,7 +48,7 @@ const CollapsibleCard: React.FC<{
         <div className="flex items-center gap-2">
            {/* Decorative dot */}
            <div className={`w-2 h-2 rounded-full ${isOpen ? 'bg-purple-600' : 'bg-gray-300'} transition-colors`}></div>
-           <span className="font-bold text-sm text-gray-700">{title}</span>
+           <span className="font-bold text-sm text-gray-700 leading-tight">{title}</span>
         </div>
         <div className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
            <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -227,7 +227,7 @@ const Dashboard: React.FC = () => {
           <div className={`${rowHeaderClass} mt-3`}>
             DATOS E IA
           </div>
-          <div className="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
              {/* Card 1: Automatizaciones Operativas (Left, Hover) */}
              <CollapsibleCard title="Automatizaciones operativas" trigger="hover">
                 <div className="flex flex-col gap-3">
@@ -271,8 +271,8 @@ const Dashboard: React.FC = () => {
                 </div>
              </CollapsibleCard>
 
-             {/* Card 2: Aplicación en Flota Corporativa (Middle, Hover) */}
-             <CollapsibleCard title="Aplicación en Flota Corporativa" trigger="hover">
+             {/* Card 2: Aplicación en Flota Corporativa (Right, Click) */}
+             <CollapsibleCard title="Aplicación en Flota Corporativa">
                 <ul className="list-none space-y-3">
                   <li className="flex gap-2.5 items-start">
                     <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
@@ -293,40 +293,6 @@ const Dashboard: React.FC = () => {
                         https://reserva-autos.vercel.app/
                       </a>
                     </span>
-                  </li>
-                </ul>
-             </CollapsibleCard>
-
-             {/* Card 3: Otros Proyectos (Right, Hover) */}
-             <CollapsibleCard title="Otros Proyectos" trigger="hover">
-                <ul className="list-none space-y-3">
-                  <li className="flex flex-col items-start gap-0.5">
-                    <div className="flex gap-2.5 items-center">
-                      <span className="text-purple-600 font-bold text-lg leading-none">•</span>
-                      <strong className="text-gray-900 text-sm">Fyo Metrics</strong>
-                    </div>
-                    <a 
-                      href="https://fyo-metrics-vf.vercel.app/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 hover:underline transition-colors text-xs ml-5 break-all"
-                    >
-                      https://fyo-metrics-vf.vercel.app/
-                    </a>
-                  </li>
-                  <li className="flex flex-col items-start gap-0.5">
-                    <div className="flex gap-2.5 items-center">
-                      <span className="text-purple-600 font-bold text-lg leading-none">•</span>
-                      <strong className="text-gray-900 text-sm">TalentMatch AI</strong>
-                    </div>
-                    <a 
-                      href="https://talent-match-ai-five.vercel.app/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 hover:underline transition-colors text-xs ml-5 break-all"
-                    >
-                      https://talent-match-ai-five.vercel.app/
-                    </a>
                   </li>
                 </ul>
              </CollapsibleCard>
