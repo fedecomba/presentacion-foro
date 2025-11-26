@@ -78,6 +78,9 @@ const Dashboard: React.FC = () => {
   // Shared style for row headers to ensure consistency and visual hierarchy
   const rowHeaderClass = "text-xs font-semibold text-gray-500 uppercase tracking-wider";
 
+  // Years that have Real State Popover interactions
+  const interactiveRealStateYears = ['22/23', '23/24', '24/25'];
+
   return (
     <div className="w-full max-w-7xl mx-auto bg-gray-50 p-4 sm:p-6 md:pr-48 rounded-xl shadow-lg border border-gray-200 relative font-sans">
       {/* Years Header */}
@@ -93,7 +96,7 @@ const Dashboard: React.FC = () => {
       {/* Metric Rows */}
       <div className="space-y-3">
         {/* Mt.2 OFICINA */}
-        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative transition-all duration-200 ${hoveredRealStateYear === '24/25' ? 'z-50' : ''}`}>
+        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative transition-all duration-200 ${hoveredRealStateYear ? 'z-50' : ''}`}>
           <div className={rowHeaderClass}>
             REAL STATE: <br />
             Mt2 Oficina
@@ -103,19 +106,41 @@ const Dashboard: React.FC = () => {
               <div key={year} className="flex flex-col items-center justify-end h-16 relative">
                 <div 
                   className={`font-bold text-sm mt-1 relative
-                    ${year === '24/25' ? 'text-blue-800 cursor-pointer underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-800'}
+                    ${interactiveRealStateYears.includes(year) ? 'text-blue-800 cursor-pointer underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-800'}
                   `}
-                  onMouseEnter={() => year === '24/25' && setHoveredRealStateYear(year)}
+                  onMouseEnter={() => interactiveRealStateYears.includes(year) && setHoveredRealStateYear(year)}
                   onMouseLeave={() => setHoveredRealStateYear(null)}
                 >
                   {office.sqm}
                   
-                  {/* Real State Popover */}
+                  {/* Real State Popover (24/25) */}
                   {year === '24/25' && hoveredRealStateYear === '24/25' && (
                     <div className="absolute top-full mt-4 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in">
                       {/* Triangular arrow pointing up */}
                       <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-600 z-50"></div>
                       <RealStateBreakdown />
+                    </div>
+                  )}
+
+                  {/* Real State Popover (23/24) */}
+                  {year === '23/24' && hoveredRealStateYear === '23/24' && (
+                    <div className="absolute top-full mt-4 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in w-max">
+                      {/* Triangular arrow pointing up */}
+                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-600 z-50"></div>
+                      <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
+                         <span className="font-bold text-xs tracking-wide">250 mt2 sede S.D.E y Parana</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Real State Popover (22/23) */}
+                  {year === '22/23' && hoveredRealStateYear === '22/23' && (
+                    <div className="absolute top-full mt-4 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in w-max">
+                      {/* Triangular arrow pointing up */}
+                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-600 z-50"></div>
+                      <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
+                         <span className="font-bold text-xs tracking-wide">1750 mt2 PB + Piso 1</span>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -171,9 +196,9 @@ const Dashboard: React.FC = () => {
             
             {/* Legend moved to the right with adjusted padding */}
             <div className="absolute left-[100%] top-1/2 transform -translate-y-1/2 flex flex-col justify-center pl-2 w-max">
-               <FleetLegendItem color="bg-amber-500" label="Amauta" />
+               <FleetLegendItem color="bg-amber-500" label="Flota Amauta" />
                <FleetLegendItem color="bg-emerald-400" label="Auto Beneficio" />
-               <FleetLegendItem color="bg-slate-500" label="Fyo" />
+               <FleetLegendItem color="bg-slate-500" label="Flota Fyo" />
                <FleetLegendItem color="bg-gray-400" label="Amauta UY" />
             </div>
           </div>
@@ -214,8 +239,7 @@ const Dashboard: React.FC = () => {
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative z-30">
           <div className={rowHeaderClass}>
             BENEFICIOS: <br />
-            Monto anual <br />
-            colaborador
+            Anual x colaborador
           </div>
           <div className="col-span-6 relative">
              <BenefitsChart />

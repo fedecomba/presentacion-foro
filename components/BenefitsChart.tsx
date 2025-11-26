@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 
 const data = [
   { value: 1166 },
@@ -18,6 +18,7 @@ interface Point {
 const BenefitsChart: React.FC = () => {
   // Set max Y slightly higher than max data for headroom
   const maxY = 2600; 
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   // Calculate points: distribute evenly across 6 columns (centered)
   const points: Point[] = data.map((d, i) => ({
@@ -79,21 +80,39 @@ const BenefitsChart: React.FC = () => {
       </svg>
 
       {/* Data Points & Labels */}
-      {points.map((p, i) => (
-          <div 
-            key={i} 
-            className="absolute transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10" 
-            style={{ left: `${p.x}%`, top: `${p.y}%` }}
-          >
-              {/* Label */}
-              <span className="mb-2.5 text-xs font-bold tracking-tight text-gray-700 whitespace-nowrap">
-                USD {data[i].value.toLocaleString()}
-              </span>
-              
-              {/* Dot */}
-              <div className="w-3.5 h-3.5 rounded-full border-[2px] border-white shadow-sm bg-[#0066CC]"></div>
-          </div>
-      ))}
+      {points.map((p, i) => {
+          // Identify the specific point for value 1815
+          const isInteractive = data[i].value === 1815;
+
+          return (
+            <div 
+              key={i} 
+              className={`absolute transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10 ${isInteractive ? 'cursor-pointer' : ''}`}
+              style={{ left: `${p.x}%`, top: `${p.y}%` }}
+              onMouseEnter={() => isInteractive && setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+                {/* Label */}
+                <span className={`mb-2.5 text-xs font-bold tracking-tight whitespace-nowrap ${isInteractive ? 'text-blue-800 underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-700'}`}>
+                  USD {data[i].value.toLocaleString()}
+                </span>
+                
+                {/* Popover Card */}
+                {isInteractive && hoveredIndex === i && (
+                  <div className="absolute bottom-full mb-3 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in w-max">
+                     {/* Triangular arrow pointing down */}
+                     <div className="absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700 z-50"></div>
+                     <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
+                        <span className="font-bold text-xs tracking-wide">MEJORA BENEFICIOS</span>
+                     </div>
+                  </div>
+                )}
+                
+                {/* Dot */}
+                <div className={`w-3.5 h-3.5 rounded-full border-[2px] border-white shadow-sm ${isInteractive ? 'bg-blue-600' : 'bg-[#0066CC]'}`}></div>
+            </div>
+          );
+      })}
     </div>
   );
 };
