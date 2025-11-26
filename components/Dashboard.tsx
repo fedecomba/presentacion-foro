@@ -80,6 +80,12 @@ const Dashboard: React.FC = () => {
 
   // Years that have Real State Popover interactions
   const interactiveRealStateYears = ['22/23', '23/24', '24/25'];
+  
+  // Years that have Fleet Popover interactions
+  const interactiveFleetYears = ['22/23', '24/25'];
+  
+  // Years that have Budget Popover interactions
+  const interactiveBudgetYears = ['24/25', 'FOCOS 25/26'];
 
   return (
     <div className="w-full max-w-7xl mx-auto bg-gray-50 p-4 sm:p-6 md:pr-48 rounded-xl shadow-lg border border-gray-200 relative font-sans">
@@ -154,7 +160,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* AUTOMOTOR */}
-        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative transition-all duration-200 ${hoveredFleetYear === '24/25' ? 'z-50' : ''}`}>
+        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative transition-all duration-200 ${hoveredFleetYear ? 'z-50' : ''}`}>
           <div className={rowHeaderClass}>AUTOMOTOR</div>
           <div className="col-span-6 relative">
             <div className="grid grid-cols-6 gap-4 items-end">
@@ -163,19 +169,30 @@ const Dashboard: React.FC = () => {
                   {/* Number Value with Hover logic */}
                   <div 
                     className={`font-bold text-sm mb-1 relative z-20
-                      ${year === '24/25' ? 'cursor-pointer text-blue-800 underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-800'}
+                      ${interactiveFleetYears.includes(year) ? 'cursor-pointer text-blue-800 underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-800'}
                     `}
-                    onMouseEnter={() => year === '24/25' && setHoveredFleetYear(year)}
+                    onMouseEnter={() => interactiveFleetYears.includes(year) && setHoveredFleetYear(year)}
                     onMouseLeave={() => setHoveredFleetYear(null)}
                   >
                     {fleet.total}
 
-                    {/* Fleet Popover */}
+                    {/* Fleet Popover (24/25) */}
                     {year === '24/25' && hoveredFleetYear === '24/25' && (
                       <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in w-max">
                          {/* Arrow pointing up (box is below) */}
                          <div className="absolute -top-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-700 z-50"></div>
                          <FleetBreakdown />
+                      </div>
+                    )}
+
+                    {/* Fleet Popover (22/23) */}
+                    {year === '22/23' && hoveredFleetYear === '22/23' && (
+                      <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in w-max">
+                         {/* Arrow pointing up (box is below) */}
+                         <div className="absolute -top-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-700 z-50"></div>
+                         <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
+                            <span className="font-bold text-xs tracking-wide">Politica Auto Beneficios</span>
+                         </div>
                       </div>
                     )}
                   </div>
@@ -205,19 +222,19 @@ const Dashboard: React.FC = () => {
         </div>
 
         {/* PRESUPUESTO */}
-        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16 relative transition-all duration-200 ${hoveredBudgetYear === '24/25' ? 'z-50' : ''}`}>
+        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16 relative transition-all duration-200 ${hoveredBudgetYear ? 'z-50' : ''}`}>
           <div className={rowHeaderClass}>PRESUPUESTO</div>
           <div className="col-span-6 grid grid-cols-6 gap-4">
             {dashboardData.map(({ year, budget }) => (
               <div 
                 key={year} 
                 className="text-center flex flex-col items-center justify-center relative"
-                onMouseEnter={() => year === '24/25' && setHoveredBudgetYear(year)}
+                onMouseEnter={() => interactiveBudgetYears.includes(year) && setHoveredBudgetYear(year)}
                 onMouseLeave={() => setHoveredBudgetYear(null)}
               >
                  {budget.tag && <GreenTag text={budget.tag} />}
                 <div 
-                  className={`font-bold text-sm sm:text-base ${budget.color} mt-1.5 ${year === '24/25' ? 'cursor-pointer underline decoration-dotted decoration-gray-400 underline-offset-4 hover:text-blue-800' : ''}`}
+                  className={`font-bold text-sm sm:text-base ${budget.color} mt-1.5 ${interactiveBudgetYears.includes(year) ? 'cursor-pointer underline decoration-dotted decoration-gray-400 underline-offset-4 hover:text-blue-800' : ''}`}
                 >
                   {budget.value}
                 </div>
@@ -230,6 +247,47 @@ const Dashboard: React.FC = () => {
                     <BudgetBreakdownChart />
                   </div>
                 )}
+
+                {/* Popover Card for FOCOS 25/26 (USD 1,8 M) */}
+                {year === 'FOCOS 25/26' && hoveredBudgetYear === 'FOCOS 25/26' && (
+                  <div className="absolute bottom-full mb-3 left-1/2 transform -translate-x-[85%] z-50 animate-fade-in w-max">
+                     {/* Triangular arrow pointing down */}
+                    <div className="absolute -bottom-1.5 left-[85%] transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700 z-50"></div>
+                    
+                    {/* Content Card with Real State style */}
+                    <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-left w-[320px]">
+                        {/* Header */}
+                        <div className="mb-3 pl-1">
+                          <span className="text-amber-500 font-bold text-xs uppercase tracking-wider border-b border-gray-600 pb-1 block">
+                            Costos y Eficiencia - Ariba SAP
+                          </span>
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                          {/* Item 1 */}
+                          <div className="bg-[#252525] border-l-[3px] border-blue-500 rounded-r p-2.5 shadow-sm">
+                             <p className="text-xs text-gray-200 leading-snug font-medium">
+                               Trazabilidad y transparencia end-to-end.
+                             </p>
+                          </div>
+
+                          {/* Item 2 */}
+                          <div className="bg-[#252525] border-l-[3px] border-blue-400 rounded-r p-2.5 shadow-sm">
+                             <p className="text-xs text-gray-200 leading-snug font-medium">
+                               Subastas y comparativas automáticas.
+                             </p>
+                          </div>
+
+                          {/* Item 3 - Highlighted for Savings */}
+                          <div className="bg-[#252525] border-l-[3px] border-emerald-500 rounded-r p-2 flex justify-between items-center shadow-sm">
+                             <span className="text-xs text-gray-300 font-medium">Ahorros estimados</span>
+                             <span className="text-sm font-bold text-emerald-400">8% – 15%</span>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                )}
+
               </div>
             ))}
           </div>

@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 const data = [
   { value: 1166 },
   { value: 1166 },
-  { value: 1815 },
-  { value: 2215 },
-  { value: 1954 },
-  { value: 1698 },
+  { value: 1781 },
+  { value: 1620 },
+  { value: 1730 },
+  { value: 1530 },
 ];
 
 interface Point {
@@ -81,8 +81,8 @@ const BenefitsChart: React.FC = () => {
 
       {/* Data Points & Labels */}
       {points.map((p, i) => {
-          // Identify the specific point for value 1815
-          const isInteractive = data[i].value === 1815;
+          // Identify the specific point for value 1781
+          const isInteractive = data[i].value === 1781;
 
           return (
             <div 
@@ -103,7 +103,7 @@ const BenefitsChart: React.FC = () => {
                      {/* Triangular arrow pointing down */}
                      <div className="absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700 z-50"></div>
                      <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
-                        <span className="font-bold text-xs tracking-wide">MEJORA BENEFICIOS</span>
+                        <span className="font-bold text-xs tracking-wide">Mejora en Beneficios</span>
                      </div>
                   </div>
                 )}
