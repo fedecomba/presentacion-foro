@@ -214,8 +214,8 @@ const Dashboard: React.FC = () => {
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative z-30">
           <div className={rowHeaderClass}>
             BENEFICIOS: <br />
-            Monto anual x <br />
-            colaborador (USD)
+            Monto anual <br />
+            colaborador
           </div>
           <div className="col-span-6 relative">
              <BenefitsChart />
