@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { dashboardData } from '../constants';
 import BudgetBreakdownChart from './BudgetBreakdownChart';
@@ -28,6 +29,17 @@ const GavelIcon = () => (
 const TrendingDownIcon = () => (
   <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+  </svg>
+);
+
+const TargetIcon = () => (
+  <svg className="w-5 h-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <circle cx="12" cy="12" r="6" />
+    <circle cx="12" cy="12" r="2" />
+    <path d="M22 2 12 12" />
+    <path d="M22 2 19 2" />
+    <path d="M22 2 22 5" />
   </svg>
 );
 
@@ -119,7 +131,10 @@ const Dashboard: React.FC = () => {
         <div className="hidden md:block"></div>
         <div className="col-span-6 grid grid-cols-6 gap-4">
           {dashboardData.map(({ year }) => (
-            <div key={year} className="text-center text-sm sm:text-base font-bold text-gray-600">{year}</div>
+            <div key={year} className="text-center text-sm sm:text-base font-bold text-gray-600 flex items-center justify-center gap-1">
+              {year}
+              {year === 'FOCOS 25/26' && <TargetIcon />}
+            </div>
           ))}
         </div>
       </div>
@@ -159,7 +174,7 @@ const Dashboard: React.FC = () => {
                       {/* Triangular arrow pointing up */}
                       <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-600 z-50"></div>
                       <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
-                         <span className="font-bold text-xs tracking-wide">250 mt2 sede S.D.E y Parana</span>
+                         <span className="font-bold text-xs tracking-wide"> +250 mt2 sede S.D.E y Parana</span>
                       </div>
                     </div>
                   )}
@@ -170,7 +185,8 @@ const Dashboard: React.FC = () => {
                       {/* Triangular arrow pointing up */}
                       <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#1a1a1a] rotate-45 border-l border-t border-gray-600 z-50"></div>
                       <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
-                         <span className="font-bold text-xs tracking-wide">1750 mt2 PB + Piso 1</span>
+                         <span className="font-bold text-xs tracking-wide">+1750 mt2 
+                         PB y Piso 1</span>
                       </div>
                     </div>
                   )}
