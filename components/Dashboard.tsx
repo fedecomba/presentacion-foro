@@ -6,7 +6,40 @@ import RealStateBreakdown from './RealStateBreakdown';
 import FleetBreakdown from './FleetBreakdown';
 import BenefitsChart from './BenefitsChart';
 
-// --- Icons for Popovers ---
+// --- Icons for Popovers & Rows ---
+
+const OfficeIcon = () => (
+  <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+  </svg>
+);
+
+const CarFrontIcon = () => (
+  <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" style={{ display: 'none' }} /> 
+    <path strokeLinecap="round" strokeLinejoin="round" d="M21 16v-2l-2-5h-3.5c-.77 0-1.47.4-1.88 1.05L12 13H5a2 2 0 00-2 2v3h18zM5 18h2M17 18h2" />
+    <circle cx="7" cy="18" r="2" />
+    <circle cx="17" cy="18" r="2" />
+  </svg>
+);
+
+const BanknotesIcon = () => (
+  <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+);
+
+const HeartHandIcon = () => (
+  <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+  </svg>
+);
+
+const CpuChipIcon = () => (
+  <svg className="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+  </svg>
+);
 
 const CurrencyIcon = () => (
   <svg className="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -38,8 +71,6 @@ const TargetIcon = () => (
     <circle cx="12" cy="12" r="6" />
     <circle cx="12" cy="12" r="2" />
     <path d="M22 2 12 12" />
-    <path d="M22 2 19 2" />
-    <path d="M22 2 22 5" />
   </svg>
 );
 
@@ -143,9 +174,12 @@ const Dashboard: React.FC = () => {
       <div className="space-y-3">
         {/* Mt.2 OFICINA */}
         <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative transition-all duration-200 ${hoveredRealStateYear ? 'z-50' : ''}`}>
-          <div className={rowHeaderClass}>
-            REAL STATE: <br />
-            Mt2 Oficina
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center gap-2">
+               <OfficeIcon />
+               <span className={rowHeaderClass}>REAL STATE</span>
+            </div>
+            <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wide ml-7">Mt2 Oficina</span>
           </div>
           <div className="col-span-6 grid grid-cols-6 gap-4 items-start relative">
             {dashboardData.map(({ year, office }) => (
@@ -241,7 +275,10 @@ const Dashboard: React.FC = () => {
 
         {/* AUTOMOTOR */}
         <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative transition-all duration-200 ${hoveredFleetYear ? 'z-50' : ''}`}>
-          <div className={rowHeaderClass}>AUTOMOTOR</div>
+          <div className="flex items-center gap-2">
+             <CarFrontIcon />
+             <div className={rowHeaderClass}>AUTOMOTOR</div>
+          </div>
           <div className="col-span-6 relative">
             <div className="grid grid-cols-6 gap-4 items-end">
               {dashboardData.map(({ year, fleet }) => (
@@ -303,7 +340,10 @@ const Dashboard: React.FC = () => {
 
         {/* PRESUPUESTO */}
         <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16 relative transition-all duration-200 ${hoveredBudgetYear ? 'z-50' : ''}`}>
-          <div className={rowHeaderClass}>PRESUPUESTO</div>
+          <div className="flex items-center gap-2">
+             <BanknotesIcon />
+             <div className={rowHeaderClass}>PRESUPUESTO</div>
+          </div>
           <div className="col-span-6 grid grid-cols-6 gap-4">
             {dashboardData.map(({ year, budget }) => (
               <div 
@@ -379,9 +419,12 @@ const Dashboard: React.FC = () => {
 
         {/* BENEFICIOS */}
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm relative z-30">
-          <div className={rowHeaderClass}>
-            BENEFICIOS: <br />
-            Anual x colaborador
+          <div className="flex flex-col gap-1.5">
+             <div className="flex items-center gap-2">
+                <HeartHandIcon />
+                <div className={rowHeaderClass}>BENEFICIOS</div>
+             </div>
+             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wide ml-7">Anual x colaborador</span>
           </div>
           <div className="col-span-6 relative">
              <BenefitsChart />
@@ -390,8 +433,9 @@ const Dashboard: React.FC = () => {
 
         {/* DATOS E IA - Collapsible Cards */}
         <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-start bg-white p-3 rounded-lg shadow-sm">
-          <div className={`${rowHeaderClass} mt-3`}>
-            DATOS E IA
+          <div className="flex items-center gap-2 mt-3">
+             <CpuChipIcon />
+             <div className={rowHeaderClass}>DATOS E IA</div>
           </div>
           <div className="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-4">
              {/* Card 1: Automatizaciones Operativas (Left, Hover) */}
