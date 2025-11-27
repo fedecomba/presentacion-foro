@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { dashboardData } from '../constants';
 import BudgetBreakdownChart from './BudgetBreakdownChart';
@@ -378,7 +377,7 @@ const Dashboard: React.FC = () => {
           <div className={`${rowHeaderClass} mt-3`}>
             DATOS E IA
           </div>
-          <div className="col-span-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-4">
              {/* Card 1: Automatizaciones Operativas (Left, Hover) */}
              <CollapsibleCard title="Automatizaciones operativas" trigger="hover">
                 <div className="flex flex-col gap-3">
@@ -422,8 +421,8 @@ const Dashboard: React.FC = () => {
                 </div>
              </CollapsibleCard>
 
-             {/* Card 2: Aplicación en Flota Corporativa (Right, Click) */}
-             <CollapsibleCard title="Aplicación en Flota Corporativa">
+             {/* Card 2: Aplicación en Flota Corporativa (Center, Hover) */}
+             <CollapsibleCard title="Aplicación en Flota Corporativa" trigger="hover">
                 <ul className="list-none space-y-3">
                   <li className="flex gap-2.5 items-start">
                     <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
@@ -444,6 +443,40 @@ const Dashboard: React.FC = () => {
                         https://reserva-autos.vercel.app/
                       </a>
                     </span>
+                  </li>
+                </ul>
+             </CollapsibleCard>
+
+             {/* Card 3: Otros proyectos Embajador IA (Right, Hover) */}
+             <CollapsibleCard title="Otros proyectos Embajador IA" trigger="hover">
+                <ul className="list-none space-y-4">
+                  <li className="flex gap-2.5 items-start">
+                    <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
+                    <div className="flex flex-col">
+                        <strong className="text-gray-900 text-sm leading-tight mb-1">Fyo Metrics - Impulsando el talento con datos</strong>
+                        <a 
+                          href="https://fyo-metrics-vf.vercel.app/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:text-blue-800 hover:underline transition-colors break-all text-xs"
+                        >
+                          https://fyo-metrics-vf.vercel.app/
+                        </a>
+                    </div>
+                  </li>
+                  <li className="flex gap-2.5 items-start">
+                    <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
+                    <div className="flex flex-col">
+                        <strong className="text-gray-900 text-sm leading-tight mb-1">TalentMatch AI</strong>
+                        <a 
+                          href="https://talent-match-ai-five.vercel.app/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:text-blue-800 hover:underline transition-colors break-all text-xs"
+                        >
+                          https://talent-match-ai-five.vercel.app/
+                        </a>
+                    </div>
                   </li>
                 </ul>
              </CollapsibleCard>
