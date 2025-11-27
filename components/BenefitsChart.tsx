@@ -1,12 +1,64 @@
 
 import React, { useState } from 'react';
 
+// --- Icons ---
+
+const GiftIcon = () => (
+  <svg className="w-6 h-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+  </svg>
+);
+
+const CursorClickIcon = () => (
+  <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" />
+  </svg>
+);
+
+const UserIcon = () => (
+  <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+  </svg>
+);
+
+const AdjustmentsIcon = () => (
+  <svg className="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+  </svg>
+);
+
+// New Icons for 1740 Popover
+const StarIcon = () => (
+  <svg className="w-6 h-6 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+  </svg>
+);
+
+const CutleryIcon = () => (
+  <svg className="w-4 h-4 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+  </svg>
+);
+
+const DumbbellIcon = () => (
+  <svg className="w-4 h-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v2a2 2 0 01-2 2v-4zm-14 0v4a2 2 0 01-2-2v-2a2 2 0 012-2z" />
+  </svg>
+);
+
+const WifiIcon = () => (
+  <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+  </svg>
+);
+
+
 const data = [
-  { value: 1166 },
-  { value: 1166 },
-  { value: 1781 },
+  { value: 1170 },
+  { value: 1170 },
+  { value: 1740 },
   { value: 1620 },
-  { value: 1730 },
+  { value: 1810 },
   { value: 1530 },
 ];
 
@@ -81,9 +133,9 @@ const BenefitsChart: React.FC = () => {
 
       {/* Data Points & Labels */}
       {points.map((p, i) => {
-          const isInteractive1781 = data[i].value === 1781;
+          const isInteractive1740 = data[i].value === 1740;
           const isInteractive1530 = data[i].value === 1530;
-          const isInteractive = isInteractive1781 || isInteractive1530;
+          const isInteractive = isInteractive1740 || isInteractive1530;
 
           return (
             <div 
@@ -98,18 +150,48 @@ const BenefitsChart: React.FC = () => {
                   USD {data[i].value.toLocaleString()}
                 </span>
                 
-                {/* Popover Card for 1781 (Simple Style) */}
-                {isInteractive1781 && hoveredIndex === i && (
+                {/* Popover Card for 1740 (Mejora Beneficios) */}
+                {isInteractive1740 && hoveredIndex === i && (
                   <div className="absolute bottom-full mb-3 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in w-max">
                      {/* Triangular arrow pointing down */}
                      <div className="absolute -bottom-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] rotate-45 border-r border-b border-gray-700 z-50"></div>
-                     <div className="bg-[#1a1a1a] p-3 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-center">
-                        <span className="font-bold text-xs tracking-wide">Mejora en Beneficios</span>
+                     
+                     {/* Card Content */}
+                     <div className="bg-[#1a1a1a] p-4 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-left min-w-[200px]">
+                        {/* Header */}
+                        <div className="mb-3 border-b border-gray-700 pb-2 flex items-center gap-2">
+                            <StarIcon />
+                            <span className="text-emerald-400 font-bold text-xs uppercase tracking-wider block">
+                                Mejora Beneficios
+                            </span>
+                        </div>
+
+                        {/* Icon List */}
+                        <ul className="space-y-3">
+                          <li className="flex items-center gap-3">
+                             <div className="mt-0.5"><CutleryIcon /></div>
+                             <span className="text-xs text-gray-300 font-medium leading-snug">
+                               Almuerzo
+                             </span>
+                          </li>
+                          <li className="flex items-center gap-3">
+                             <div className="mt-0.5"><DumbbellIcon /></div>
+                             <span className="text-xs text-gray-300 font-medium leading-snug">
+                               Gympass
+                             </span>
+                          </li>
+                          <li className="flex items-center gap-3">
+                             <div className="mt-0.5"><WifiIcon /></div>
+                             <span className="text-xs text-gray-300 font-medium leading-snug">
+                               Conectividad
+                             </span>
+                          </li>
+                        </ul>
                      </div>
                   </div>
                 )}
 
-                {/* Popover Card for 1530 (Updated Aesthetic with Emoji & Bullets) */}
+                {/* Popover Card for 1530 (Sistema de beneficios flexibles) */}
                 {isInteractive1530 && hoveredIndex === i && (
                   <div className="absolute bottom-full mb-3 left-1/2 transform -translate-x-[85%] z-50 animate-fade-in w-max">
                      {/* Triangular arrow pointing down (offset to align with point) */}
@@ -117,30 +199,30 @@ const BenefitsChart: React.FC = () => {
                      
                      {/* Card Content */}
                      <div className="bg-[#1a1a1a] p-4 rounded-lg shadow-2xl border border-gray-700 relative font-sans text-white text-left w-[320px]">
-                        {/* Header */}
+                        {/* Header - Emoji Replaced with SVG */}
                         <div className="mb-3 border-b border-gray-700 pb-2 flex items-center gap-2">
-                            <span className="text-lg">🎁</span>
+                            <GiftIcon />
                             <span className="text-amber-500 font-bold text-xs uppercase tracking-wider block">
                                 Sistema de beneficios flexibles
                             </span>
                         </div>
 
-                        {/* Bulleted List */}
+                        {/* Icon List - Bullets Replaced with SVG */}
                         <ul className="space-y-3">
-                          <li className="flex items-start gap-2.5">
-                             <span className="text-blue-400 text-lg leading-none mt-[-2px]">•</span>
+                          <li className="flex items-start gap-3">
+                             <div className="mt-0.5"><CursorClickIcon /></div>
                              <span className="text-xs text-gray-300 font-medium leading-snug">
                                El colaborador elige cómo usar sus puntos.
                              </span>
                           </li>
-                          <li className="flex items-start gap-2.5">
-                             <span className="text-emerald-400 text-lg leading-none mt-[-2px]">•</span>
+                          <li className="flex items-start gap-3">
+                             <div className="mt-0.5"><UserIcon /></div>
                              <span className="text-xs text-gray-300 font-medium leading-snug">
                                El paquete de beneficios se vuelve personalizable.
                              </span>
                           </li>
-                          <li className="flex items-start gap-2.5">
-                             <span className="text-purple-400 text-lg leading-none mt-[-2px]">•</span>
+                          <li className="flex items-start gap-3">
+                             <div className="mt-0.5"><AdjustmentsIcon /></div>
                              <span className="text-xs text-gray-300 font-medium leading-snug">
                                Optimiza costos al ofrecer flexibilidad sin aumentar el presupuesto.
                              </span>
