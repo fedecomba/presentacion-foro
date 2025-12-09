@@ -74,6 +74,49 @@ const TargetIcon = () => (
   </svg>
 );
 
+const LinkIcon = () => (
+  <svg className="w-3 h-3 text-blue-500 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+  </svg>
+);
+
+// New icons for Data popover
+const RobotIcon = () => (
+  <svg className="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  </svg>
+);
+
+const ChartBarIcon = () => (
+  <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+  </svg>
+);
+
+const BoltIcon = () => (
+  <svg className="w-4 h-4 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+  </svg>
+);
+
+const DevicePhoneMobileIcon = () => (
+  <svg className="w-4 h-4 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+  </svg>
+);
+
+const ChevronDownIcon = () => (
+  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+  </svg>
+);
+
+const CheckCircleMiniIcon = () => (
+  <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 20 20" fill="currentColor">
+    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+  </svg>
+);
+
 const GreenTag: React.FC<{ text: string }> = ({ text }) => (
   <div className="relative inline-block bg-green-500 text-white px-2 py-0.5 text-xs rounded-sm shadow">
     <span>{text}</span>
@@ -88,63 +131,26 @@ const FleetLegendItem: React.FC<{ color: string; label: string }> = ({ color, la
   </div>
 );
 
-const CollapsibleCard: React.FC<{ 
-  title: string; 
-  children: React.ReactNode; 
-  trigger?: 'click' | 'hover';
-}> = ({ title, children, trigger = 'click' }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleMouseEnter = () => {
-    if (trigger === 'hover') setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (trigger === 'hover') setIsOpen(false);
-  };
-
-  return (
-    <div 
-      className="bg-white border border-gray-200 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md h-full"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <button
-        onClick={() => trigger === 'click' && setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between p-3 text-left focus:outline-none ${trigger === 'hover' ? 'cursor-default' : 'cursor-pointer'}`}
-      >
-        <div className="flex items-center gap-2">
-           {/* Decorative dot */}
-           <div className={`w-2 h-2 rounded-full ${isOpen ? 'bg-purple-600' : 'bg-gray-300'} transition-colors`}></div>
-           <span className="font-bold text-sm text-gray-700 leading-tight">{title}</span>
-        </div>
-        <div className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-           <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-           </svg>
-        </div>
-      </button>
-      
-      <div 
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}
-      >
-        <div className="p-3 pt-0 border-t border-transparent text-sm text-gray-600 bg-gray-50/50 rounded-b-lg">
-          {children}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const Dashboard: React.FC = () => {
   const maxOfficeSqm = Math.max(...dashboardData.map(d => d.office.sqm));
   const maxFleet = Math.max(...dashboardData.map(d => d.fleet.total));
   const [hoveredBudgetYear, setHoveredBudgetYear] = useState<string | null>(null);
   const [hoveredRealStateYear, setHoveredRealStateYear] = useState<string | null>(null);
   const [hoveredFleetYear, setHoveredFleetYear] = useState<string | null>(null);
+  
+  // State for collapsible tabs
+  const [activeDataTab, setActiveDataTab] = useState<string | null>(null);
+
+  const toggleDataTab = (tab: string) => {
+    setActiveDataTab(prev => prev === tab ? null : tab);
+  };
 
   // Shared style for row headers to ensure consistency and visual hierarchy
   const rowHeaderClass = "text-xs font-semibold text-gray-500 uppercase tracking-wider";
+  
+  // Highlighting style for "FOCOS 25/26" column
+  // Updated: Solid border and inner shadow for a more firm and corporate look
+  const focosHighlightClass = "bg-amber-50 border border-amber-200 shadow-inner rounded-xl";
 
   // Years that have Real State Popover interactions
   const interactiveRealStateYears = ['22/23', '23/24', '24/25', 'FOCOS 25/26'];
@@ -162,7 +168,10 @@ const Dashboard: React.FC = () => {
         <div className="hidden md:block"></div>
         <div className="col-span-6 grid grid-cols-6 gap-4">
           {dashboardData.map(({ year }) => (
-            <div key={year} className="text-center text-sm sm:text-base font-bold text-gray-600 flex items-center justify-center gap-1">
+            <div 
+              key={year} 
+              className={`text-center text-sm sm:text-base font-bold text-gray-600 flex items-center justify-center gap-1 ${year === 'FOCOS 25/26' ? focosHighlightClass + ' py-1' : ''}`}
+            >
               {year}
               {year === 'FOCOS 25/26' && <TargetIcon />}
             </div>
@@ -183,7 +192,10 @@ const Dashboard: React.FC = () => {
           </div>
           <div className="col-span-6 grid grid-cols-6 gap-4 items-start relative">
             {dashboardData.map(({ year, office }) => (
-              <div key={year} className="flex flex-col items-center justify-end h-16 relative">
+              <div 
+                key={year} 
+                className={`flex flex-col items-center justify-end h-16 relative ${year === 'FOCOS 25/26' ? focosHighlightClass + ' px-1' : ''}`}
+              >
                 <div 
                   className={`font-bold text-sm mt-1 relative
                     ${interactiveRealStateYears.includes(year) ? 'text-blue-800 cursor-pointer underline decoration-dotted decoration-blue-400 underline-offset-4' : 'text-gray-800'}
@@ -282,7 +294,10 @@ const Dashboard: React.FC = () => {
           <div className="col-span-6 relative">
             <div className="grid grid-cols-6 gap-4 items-end">
               {dashboardData.map(({ year, fleet }) => (
-                <div key={year} className="flex flex-col items-center justify-end relative h-20">
+                <div 
+                  key={year} 
+                  className={`flex flex-col items-center justify-end relative h-20 ${year === 'FOCOS 25/26' ? focosHighlightClass + ' px-1' : ''}`}
+                >
                   {/* Number Value with Hover logic */}
                   <div 
                     className={`font-bold text-sm mb-1 relative z-20
@@ -338,8 +353,8 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* PRESUPUESTO */}
-        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white p-3 rounded-lg shadow-sm h-16 relative transition-all duration-200 ${hoveredBudgetYear ? 'z-50' : ''}`}>
+        {/* PRESUPUESTO - Updated hover for visibility */}
+        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-center bg-white hover:bg-gray-100 p-3 rounded-lg shadow-sm h-16 relative transition-colors duration-200 ${hoveredBudgetYear ? 'z-50' : ''}`}>
           <div className="flex items-center gap-2">
              <BanknotesIcon />
              <div className={rowHeaderClass}>PRESUPUESTO</div>
@@ -348,7 +363,7 @@ const Dashboard: React.FC = () => {
             {dashboardData.map(({ year, budget }) => (
               <div 
                 key={year} 
-                className="text-center flex flex-col items-center justify-center relative"
+                className={`text-center flex flex-col items-center justify-center relative ${year === 'FOCOS 25/26' ? focosHighlightClass : ''}`}
                 onMouseEnter={() => interactiveBudgetYears.includes(year) && setHoveredBudgetYear(year)}
                 onMouseLeave={() => setHoveredBudgetYear(null)}
               >
@@ -427,119 +442,180 @@ const Dashboard: React.FC = () => {
              <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wide ml-7">Anual x colaborador</span>
           </div>
           <div className="col-span-6 relative">
+             {/* Background highlight for the last column (Focos) in Benefits row */}
+             <div className="absolute inset-y-0 right-0 w-[16.66%] bg-amber-50 border-l border-amber-200 shadow-inner rounded-r-lg -z-0 pointer-events-none"></div>
              <BenefitsChart />
           </div>
         </div>
 
-        {/* DATOS E IA - Collapsible Cards */}
-        <div className="grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-start bg-white p-3 rounded-lg shadow-sm">
-          <div className="flex items-center gap-2 mt-3">
+        {/* DATOS E IA - Refined Unified Row with internal separators */}
+        <div className={`grid grid-cols-[1fr,6fr] md:grid-cols-7 gap-4 items-start bg-white p-3 rounded-lg shadow-sm relative transition-all duration-200 z-0`}>
+          <div className="flex items-center gap-2 mt-2">
              <CpuChipIcon />
              <div className={rowHeaderClass}>DATOS E IA</div>
           </div>
-          <div className="col-span-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-             {/* Card 1: Automatizaciones Operativas (Left, Hover) */}
-             <CollapsibleCard title="Automatizaciones operativas" trigger="hover">
-                <div className="flex flex-col gap-3">
-                  <ul className="list-none space-y-2.5">
-                    {/* Completed Items */}
-                    {[
-                      'Flujo de facturación',
-                      'Desayuno cumpleaños',
-                      'Reservas de salas'
-                    ].map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2.5">
-                        <div className="bg-green-100 rounded-full p-0.5 flex-shrink-0">
-                          <svg className="w-3.5 h-3.5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        <span className="text-gray-700 font-medium">{item}</span>
-                      </li>
-                    ))}
-
-                    {/* Pending/Other Items */}
-                    {[
-                      'Alertas GPS',
-                      'Reportes – Tasa de uso'
-                    ].map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2.5">
-                         <div className="w-4 h-4 flex items-center justify-center flex-shrink-0">
-                            <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
-                         </div>
-                         <span className="text-gray-500">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  {/* Highlight Badge */}
-                  <div className="mt-1 bg-emerald-50 border border-emerald-100 rounded-md px-3 py-1.5 flex items-center justify-center w-fit shadow-sm">
-                    <span className="text-emerald-700 text-xs font-bold uppercase tracking-wide">
-                      Ahorro: 40 horas mensuales
+          
+          <div className="col-span-6 flex flex-col md:flex-row gap-4 items-start">
+             {/* Tab 1 */}
+             <div 
+               className="flex-1 w-full relative"
+               onMouseEnter={() => setActiveDataTab('automation')}
+               onMouseLeave={() => setActiveDataTab(null)}
+             >
+                <button 
+                  onClick={() => toggleDataTab('automation')}
+                  className={`w-full bg-white border ${activeDataTab === 'automation' ? 'border-blue-500 ring-1 ring-blue-500 bg-blue-50' : 'border-gray-200 hover:border-blue-300'} rounded-lg px-3 py-2.5 flex items-center justify-between shadow-sm transition-all group text-left cursor-pointer`}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className={`w-1.5 h-1.5 rounded-full ${activeDataTab === 'automation' ? 'bg-blue-500' : 'bg-gray-300 group-hover:bg-blue-400'}`}></div>
+                    <span className={`text-xs sm:text-sm font-semibold ${activeDataTab === 'automation' ? 'text-blue-800' : 'text-gray-700 group-hover:text-blue-600'}`}>
+                      Automatizaciones operativas
                     </span>
                   </div>
-                </div>
-             </CollapsibleCard>
+                  <div className={`transform transition-transform duration-200 ${activeDataTab === 'automation' ? 'rotate-180 text-blue-500' : 'text-gray-400'}`}>
+                    <ChevronDownIcon />
+                  </div>
+                </button>
+                {activeDataTab === 'automation' && (
+                  <div className="mt-2 p-4 bg-white shadow-xl border border-gray-200 md:absolute md:top-full md:left-0 md:w-full md:z-50 rounded-lg animate-fade-in">
+                      {/* Header matching image */}
+                      <div className="flex items-center justify-between mb-3">
+                         <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                            <span className="font-bold text-gray-800 text-sm">Automatizaciones operativas</span>
+                         </div>
+                         <div className="transform rotate-180 text-gray-400">
+                             <ChevronDownIcon />
+                         </div>
+                      </div>
 
-             {/* Card 2: Aplicación en Flota Corporativa (Center, Hover) */}
-             <CollapsibleCard title="Aplicación en Flota Corporativa" trigger="hover">
-                <ul className="list-none space-y-3">
-                  <li className="flex gap-2.5 items-start">
-                    <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
-                    <span className="text-gray-700 text-sm leading-relaxed">
-                      <strong className="text-gray-900">Gestión de datos:</strong> Dashboard mensual con datos de uso, reservas, duración de viaje, usuarios, solicitudes de hoteles y destinos frecuentes.
+                      {/* List */}
+                      <ul className="space-y-2 mb-4 pl-1">
+                        <li className="flex items-center gap-2">
+                          <CheckCircleMiniIcon />
+                          <span className="text-gray-700 text-sm">Flujo de facturación</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircleMiniIcon />
+                          <span className="text-gray-700 text-sm">Desayuno cumpleaños</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircleMiniIcon />
+                          <span className="text-gray-700 text-sm">Reservas de salas</span>
+                        </li>
+                        <li className="flex items-center gap-2 pl-0.5">
+                           <div className="w-1.5 h-1.5 bg-gray-400 rounded-full mx-1"></div>
+                           <span className="text-gray-500 text-sm">Alertas GPS</span>
+                        </li>
+                        <li className="flex items-center gap-2 pl-0.5">
+                           <div className="w-1.5 h-1.5 bg-gray-400 rounded-full mx-1"></div>
+                           <span className="text-gray-500 text-sm">Reportes – Tasa de uso</span>
+                        </li>
+                      </ul>
+
+                      {/* Footer */}
+                      <div className="bg-emerald-50 border border-emerald-100 rounded-lg py-2 text-center">
+                        <span className="text-emerald-700 font-bold text-xs uppercase tracking-wider">
+                          AHORRO: 40 HORAS MENSUALES
+                        </span>
+                      </div>
+                  </div>
+                )}
+             </div>
+
+             {/* Tab 2 */}
+             <div 
+               className="flex-1 w-full relative"
+               onMouseEnter={() => setActiveDataTab('fleet')}
+               onMouseLeave={() => setActiveDataTab(null)}
+             >
+                <button 
+                  onClick={() => toggleDataTab('fleet')}
+                  className={`w-full bg-white border ${activeDataTab === 'fleet' ? 'border-blue-500 ring-1 ring-blue-500 bg-blue-50' : 'border-gray-200 hover:border-blue-300'} rounded-lg px-3 py-2.5 flex items-center justify-between shadow-sm transition-all group text-left cursor-pointer`}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className={`w-1.5 h-1.5 rounded-full ${activeDataTab === 'fleet' ? 'bg-blue-500' : 'bg-gray-300 group-hover:bg-blue-400'}`}></div>
+                    <span className={`text-xs sm:text-sm font-semibold ${activeDataTab === 'fleet' ? 'text-blue-800' : 'text-gray-700 group-hover:text-blue-600'}`}>
+                      Aplicación en Flota Corporativa
                     </span>
-                  </li>
-                  <li className="flex gap-2.5 items-start">
-                    <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
-                    <span className="text-gray-700 text-sm leading-relaxed">
-                      <strong className="text-gray-900">Acceso al sistema:</strong>{' '}
+                  </div>
+                   <div className={`transform transition-transform duration-200 ${activeDataTab === 'fleet' ? 'rotate-180 text-blue-500' : 'text-gray-400'}`}>
+                    <ChevronDownIcon />
+                  </div>
+                </button>
+                {activeDataTab === 'fleet' && (
+                  <div className="mt-2 p-3 bg-gray-50 md:bg-white md:shadow-xl md:border-gray-200 md:absolute md:top-full md:left-0 md:w-full md:z-50 rounded-lg border border-gray-100 text-xs text-gray-600 space-y-2 animate-fade-in">
+                      <div className="flex items-center gap-2 mb-2">
+                         <DevicePhoneMobileIcon />
+                         <span className="font-bold text-gray-700 uppercase tracking-wide">Gestión Digital</span>
+                      </div>
+                       <ul className="space-y-1.5 pl-1">
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-500 font-bold">•</span>
+                          <span><strong>Dashboard:</strong> Uso, reservas y destinos frecuentes.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-500 font-bold">•</span>
+                          <span><strong>Check-in Digital:</strong> Registro con fotos.</span>
+                        </li>
+                      </ul>
                       <a 
                         href="https://reserva-autos.vercel.app/" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-800 hover:underline transition-colors break-all"
+                        className="flex items-center gap-1 text-blue-600 font-bold hover:underline mt-1 bg-blue-50 w-fit px-2 py-1 rounded"
                       >
-                        https://reserva-autos.vercel.app/
+                        App Reservas <LinkIcon />
                       </a>
-                    </span>
-                  </li>
-                </ul>
-             </CollapsibleCard>
+                  </div>
+                )}
+             </div>
 
-             {/* Card 3: Otros proyectos Embajador IA (Right, Hover) */}
-             <CollapsibleCard title="Otros proyectos Embajador IA" trigger="hover">
-                <ul className="list-none space-y-4">
-                  <li className="flex gap-2.5 items-start">
-                    <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
-                    <div className="flex flex-col">
-                        <strong className="text-gray-900 text-sm leading-tight mb-1">Fyo Metrics - Impulsando el talento con datos</strong>
-                        <a 
-                          href="https://fyo-metrics-vf.vercel.app/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-800 hover:underline transition-colors break-all text-xs"
-                        >
-                          https://fyo-metrics-vf.vercel.app/
-                        </a>
-                    </div>
-                  </li>
-                  <li className="flex gap-2.5 items-start">
-                    <span className="text-purple-600 font-bold text-lg leading-none mt-0.5">•</span>
-                    <div className="flex flex-col">
-                        <strong className="text-gray-900 text-sm leading-tight mb-1">TalentMatch AI</strong>
-                        <a 
-                          href="https://talent-match-ai-five.vercel.app/" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-800 hover:underline transition-colors break-all text-xs"
-                        >
-                          https://talent-match-ai-five.vercel.app/
-                        </a>
-                    </div>
-                  </li>
-                </ul>
-             </CollapsibleCard>
+             {/* Tab 3 */}
+             <div 
+               className="flex-1 w-full relative"
+               onMouseEnter={() => setActiveDataTab('ambassador')}
+               onMouseLeave={() => setActiveDataTab(null)}
+             >
+                <button 
+                  onClick={() => toggleDataTab('ambassador')}
+                  className={`w-full bg-white border ${activeDataTab === 'ambassador' ? 'border-blue-500 ring-1 ring-blue-500 bg-blue-50' : 'border-gray-200 hover:border-blue-300'} rounded-lg px-3 py-2.5 flex items-center justify-between shadow-sm transition-all group text-left cursor-pointer`}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className={`w-1.5 h-1.5 rounded-full ${activeDataTab === 'ambassador' ? 'bg-blue-500' : 'bg-gray-300 group-hover:bg-blue-400'}`}></div>
+                    <span className={`text-xs sm:text-sm font-semibold ${activeDataTab === 'ambassador' ? 'text-blue-800' : 'text-gray-700 group-hover:text-blue-600'}`}>
+                      Otros proyectos Embajador IA
+                    </span>
+                  </div>
+                   <div className={`transform transition-transform duration-200 ${activeDataTab === 'ambassador' ? 'rotate-180 text-blue-500' : 'text-gray-400'}`}>
+                    <ChevronDownIcon />
+                  </div>
+                </button>
+                {activeDataTab === 'ambassador' && (
+                  <div className="mt-2 p-3 bg-gray-50 md:bg-white md:shadow-xl md:border-gray-200 md:absolute md:top-full md:left-0 md:w-full md:z-50 rounded-lg border border-gray-100 text-xs text-gray-600 space-y-2 animate-fade-in">
+                      <div className="flex items-center gap-2 mb-2">
+                         <TargetIcon />
+                         <span className="font-bold text-gray-700 uppercase tracking-wide">Estrategia & Herramientas</span>
+                      </div>
+                      <div className="grid grid-cols-1 gap-1.5 mb-2">
+                         <a href="https://fyo-metrics-vf.vercel.app/" target="_blank" className="block p-1.5 bg-white border border-gray-200 rounded hover:border-blue-300 transition-colors">
+                            <span className="font-bold text-gray-800 block">Fyo Metrics</span>
+                            <span className="text-[10px] text-blue-500 truncate">fyo-metrics-vf.vercel.app</span>
+                         </a>
+                         <a href="https://talent-match-ai-five.vercel.app/" target="_blank" className="block p-1.5 bg-white border border-gray-200 rounded hover:border-blue-300 transition-colors">
+                            <span className="font-bold text-gray-800 block">TalentMatch AI</span>
+                            <span className="text-[10px] text-blue-500 truncate">talent-match-ai.vercel.app</span>
+                         </a>
+                      </div>
+                       <ul className="space-y-1 pl-1 border-t border-gray-100 pt-1.5">
+                        <li className="flex items-start gap-2">
+                          <span className="text-amber-500 font-bold">•</span>
+                          <span><strong>Predictivo:</strong> Anticipa fallas (+80% precisión).</span>
+                        </li>
+                      </ul>
+                  </div>
+                )}
+             </div>
           </div>
         </div>
         
